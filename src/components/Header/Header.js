@@ -9,7 +9,12 @@ const Header = () => {
         <header className="header center">
             <h3>
                 {homepage ? (
-                    <a href={homepage} className="link">
+                    <a
+                        target="_blank"
+                        rel="noreferrer"
+                        href={homepage}
+                        className="link"
+                    >
                         {title}
                     </a>
                 ) : (
