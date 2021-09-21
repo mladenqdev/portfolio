@@ -16,28 +16,34 @@ const about = {
 
 const projects = [
     {
-        name: 'Project 1',
+        name: 'dobrokRatingz',
         description:
-            'Amet asperiores et impedit aliquam consectetur? Voluptates sed a nulla ipsa officia et esse aliquam',
-        stack: ['SASS', 'TypeScript', 'React'],
-        sourceCode: 'https://github.com',
-        livePreview: 'https://github.com',
+            "A small web app that helps me keep track of how I rate the meals I order from the company's kitchen.",
+        stack: [
+            'React.js',
+            'Context',
+            'Framer Motion',
+            'Firestore Database',
+            'Firebase Auth',
+        ],
+        sourceCode: 'https://github.com/mladenqdev/dobrok-ratingz',
+        livePreview: 'https://dobrok-ratingz.vercel.app/',
     },
     {
-        name: 'Project 2',
+        name: 'moviez',
         description:
-            'Amet asperiores et impedit aliquam consectetur? Voluptates sed a nulla ipsa officia et esse aliquam',
-        stack: ['SASS', 'TypeScript', 'React'],
-        sourceCode: 'https://github.com',
-        livePreview: 'https://github.com',
+            'A place to share your favorite or your least favorite movie lists, regardless of how controversial they might be!',
+        stack: ['Vue.js', 'RESTful API', 'Firestore Database', 'Firebase Auth'],
+        sourceCode: 'https://github.com/mladenqdev/moviez',
+        livePreview: 'https://moviez-5be36.firebaseapp.com/',
     },
     {
-        name: 'Project 3',
+        name: 'work-timer',
         description:
-            'Amet asperiores et impedit aliquam consectetur? Voluptates sed a nulla ipsa officia et esse aliquam',
-        stack: ['SASS', 'TypeScript', 'React'],
-        sourceCode: 'https://github.com',
-        livePreview: 'https://github.com',
+            'A simple time management web app, based on the popular pomodoro technique.',
+        stack: ['React.js', 'Context', 'React'],
+        sourceCode: 'https://github.com/mladenqdev/work-timer',
+        livePreview: 'https://work-timer-lime.vercel.app/',
     },
 ];
 
@@ -49,6 +55,7 @@ const skills = [
     'Handlebars.js',
     'React.js',
     'Redux',
+    'Context',
     'Vue.js',
     'Material UI',
     'Git',
