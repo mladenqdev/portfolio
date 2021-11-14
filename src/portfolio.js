@@ -41,7 +41,7 @@ const projects = [
         name: 'work-timer',
         description:
             'A simple time management web app, based on the popular pomodoro technique.',
-        stack: ['React.js', 'Context', 'React'],
+        stack: ['React.js', 'React Context'],
         sourceCode: 'https://github.com/mladenqdev/work-timer',
         livePreview: 'https://work-timer-lime.vercel.app/',
     },
