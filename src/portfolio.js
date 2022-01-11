@@ -54,10 +54,8 @@ const skills = [
     'JavaScript',
     'Handlebars.js',
     'React.js',
-    'Redux',
     'Context',
     'Vue.js',
-    'Material UI',
     'Git',
     'Adobe Photoshop',
 ];
