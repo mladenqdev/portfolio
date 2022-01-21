@@ -40,10 +40,18 @@ const projects = [
     {
         name: 'work-timer',
         description:
-            'A simple time management web app, based on the popular pomodoro technique.',
+            'Time management web app, based on the popular pomodoro technique. It does actually help when you want to focus on your tasks!',
         stack: ['React.js', 'React Context'],
         sourceCode: 'https://github.com/mladenqdev/work-timer',
         livePreview: 'https://work-timer-lime.vercel.app/',
+    },
+    {
+        name: 'movie memory game',
+        description:
+            'A simple memory game for cinephiles, to practice memory, concentration and perhaps find a hidden gem to watch!',
+        stack: ['React.js'],
+        sourceCode: 'https://github.com/mladenqdev/movie-memory',
+        livePreview: 'https://movie-memory.vercel.app//',
     },
 ];
 
