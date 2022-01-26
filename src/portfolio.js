@@ -38,20 +38,28 @@ const projects = [
         livePreview: 'https://moviez-5be36.firebaseapp.com/',
     },
     {
-        name: 'work-timer',
-        description:
-            'Time management web app, based on the popular pomodoro technique. Helps when you want to focus on your tasks!',
-        stack: ['React.js', 'React Context'],
-        sourceCode: 'https://github.com/mladenqdev/work-timer',
-        livePreview: 'https://work-timer-lime.vercel.app/',
-    },
-    {
         name: 'movie memory game',
         description:
             'A simple memory game for cinephiles, to practice memory, concentration and perhaps find a hidden gem to watch!',
         stack: ['React.js'],
         sourceCode: 'https://github.com/mladenqdev/movie-memory',
         livePreview: 'https://movie-memory.vercel.app//',
+    },
+    {
+        name: 'recipez',
+        description:
+            'Write down your favorite recipes, or maybe a recipe someone else shared will catch your eye!',
+        stack: ['React.js', 'React Context', 'Firestore Database'],
+        sourceCode: 'https://github.com/mladenqdev/recipez',
+        livePreview: 'https://recipez-two.vercel.app/',
+    },
+    {
+        name: 'work-timer',
+        description:
+            'Time management web app, based on the popular pomodoro technique. Helps when you want to focus on your tasks!',
+        stack: ['React.js', 'React Context'],
+        sourceCode: 'https://github.com/mladenqdev/work-timer',
+        livePreview: 'https://work-timer-lime.vercel.app/',
     },
 ];
 
@@ -62,7 +70,7 @@ const skills = [
     'JavaScript',
     'Handlebars.js',
     'React.js',
-    'Context',
+    'React Context',
     'Vue.js',
     'Git',
     'Adobe Photoshop',
