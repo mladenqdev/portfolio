@@ -53,14 +53,14 @@ const projects = [
         sourceCode: 'https://github.com/mladenqdev/recipez',
         livePreview: 'https://recipez-two.vercel.app/',
     },
-    {
-        name: 'work-timer',
-        description:
-            'Time management web app, based on the popular pomodoro technique. Helps when you want to focus on your tasks!',
-        stack: ['React.js', 'React Context'],
-        sourceCode: 'https://github.com/mladenqdev/work-timer',
-        livePreview: 'https://work-timer-lime.vercel.app/',
-    },
+    // {
+    //     name: 'work-timer',
+    //     description:
+    //         'Time management web app, based on the popular pomodoro technique. Helps when you want to focus on your tasks!',
+    //     stack: ['React.js', 'React Context'],
+    //     sourceCode: 'https://github.com/mladenqdev/work-timer',
+    //     livePreview: 'https://work-timer-lime.vercel.app/',
+    // },
 ];
 
 const skills = [
