@@ -26,6 +26,16 @@ async function fetchData() {
 
     projectsData = data.projects || [];
 
+    // preload project images
+    if (projectsData.length > 0) {
+      projectsData.forEach((project) => {
+        if (project.imageUrl) {
+          const img = new Image();
+          img.src = project.imageUrl;
+        }
+      });
+    }
+
     // call rendering functions for dynamic content
     setLogoLink(data.personalInfo);
     renderHeroLinks(data.personalInfo);
