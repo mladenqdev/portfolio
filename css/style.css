@@ -787,3 +787,9 @@ footer {
 .logo-link:hover::after {
   width: 100%;
 }
+
+:is(a, button):focus-visible {
+  outline: 3px solid var(--primary-color);
+  outline-offset: 2px;
+  border-radius: 3px;
+}

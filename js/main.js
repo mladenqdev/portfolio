@@ -111,35 +111,37 @@ function renderCurrentProject() {
   </svg>`;
 
   contentDiv.innerHTML = `
-    <h3>${project.title}</h3> 
-    <div class="project-top">
-      <div class="project-image">
-        ${
-          project.imageUrl
-            ? `<img src="${project.imageUrl}" alt="${project.title} screenshot">`
-            : '<div class="no-image">No Image Available</div>'
-        } 
+    <article>
+      <h3>${project.title}</h3> 
+      <div class="project-top">
+        <div class="project-image">
+          ${
+            project.imageUrl
+              ? `<img src="${project.imageUrl}" alt="${project.title} screenshot">`
+              : '<div class="no-image">No Image Available</div>'
+          } 
+        </div>
+        <div class="project-stack">
+          <h4>Tech Stack:</h4>
+          <div class="tech-stack-bubbles">${techListHtml}</div>
+        </div>
       </div>
-      <div class="project-stack">
-        <h4>Tech Stack:</h4>
-        <div class="tech-stack-bubbles">${techListHtml}</div>
+      <div class="project-description">
+        <p>${project.description}</p>
       </div>
-    </div>
-    <div class="project-description">
-      <p>${project.description}</p>
-    </div>
-    <div class="project-links">
-      <a href="${
-        project.codeUrl
-      }" target="_blank" rel="noopener noreferrer" aria-label="View Code">
-        <svg class="icon-svg" aria-hidden="true"><use href="/assets/sprite.svg#icon-code"></use></svg>
-      </a>
-      <a href="${
-        project.liveUrl
-      }" target="_blank" rel="noopener noreferrer" aria-label="Live Demo">
-        ${externalLinkSvg}
-      </a>
-    </div>
+      <div class="project-links">
+        <a href="${
+          project.codeUrl
+        }" target="_blank" rel="noopener noreferrer" aria-label="View Code">
+          <svg class="icon-svg" aria-hidden="true"><use href="/assets/sprite.svg#icon-code"></use></svg>
+        </a>
+        <a href="${
+          project.liveUrl
+        }" target="_blank" rel="noopener noreferrer" aria-label="Live Demo">
+          ${externalLinkSvg}
+        </a>
+      </div>
+    </article>
   `;
 }
 
@@ -208,7 +210,7 @@ function renderWorkExperience(experience) {
   const reversedExperience = [...experience].reverse();
 
   reversedExperience.forEach((job) => {
-    const jobElement = document.createElement("div");
+    const jobElement = document.createElement("article");
     jobElement.className = "job-entry";
 
     const descriptionPoints = job.description
