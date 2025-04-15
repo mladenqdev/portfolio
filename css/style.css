@@ -276,6 +276,9 @@ header ul a:hover::after {
   display: flex;
   align-items: center;
   gap: 15px;
+  position: relative;
+  width: 85%;
+  margin: 0 auto;
 }
 
 #projects-carousel {
@@ -420,7 +423,6 @@ body.light-theme .tech-bubble {
 }
 
 /* Carousel Navigation */
-
 .carousel-nav-btn {
   background-color: var(--card-bg);
   border: 1px solid var(--border-color);
@@ -436,12 +438,24 @@ body.light-theme .tech-bubble {
   align-items: center;
   transition: background-color 0.3s ease, color 0.3s ease;
   flex-shrink: 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
 }
 
 .carousel-nav-btn:hover {
   background-color: var(--primary-color);
   color: var(--card-bg);
   border-color: var(--primary-color);
+}
+
+#prev-project {
+  left: -60px;
+}
+
+#next-project {
+  right: -60px;
 }
 
 .tech-stack span {
@@ -737,6 +751,10 @@ footer {
     padding: 15px;
   }
 
+  .tech-bubble {
+    font-size: 0.6rem;
+  }
+
   .carousel-content .project-top {
     flex-direction: column;
     gap: 15px;
@@ -751,6 +769,7 @@ footer {
 
   .carousel-content .project-description {
     margin-bottom: 15px;
+    font-size: 0.8rem;
   }
 
   .experience-container {
@@ -780,6 +799,20 @@ footer {
   #hero p {
     font-size: 0.95rem;
     max-width: 90%;
+  }
+
+  .carousel-nav-btn {
+    top: 260px;
+    transform: none;
+    width: 35px;
+    height: 35px;
+    font-size: 1.5rem;
+  }
+  #prev-project {
+    left: -27px;
+  }
+  #next-project {
+    right: -27px;
   }
 }
 
