@@ -482,6 +482,11 @@ body.light-theme .tech-bubble {
   padding: 20px;
   border-radius: 8px;
   border: 1px solid var(--border-color);
+  transition: filter 0.2s ease;
+}
+
+.job-entry:hover {
+  filter: brightness(1.15);
 }
 
 .job-entry::before {
@@ -540,11 +545,21 @@ body.light-theme .tech-bubble {
   border: 1px solid rgba(var(--primary-rgb, 144, 160, 217), 0.3);
   display: inline-flex;
   align-items: center;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.skill-tag:hover {
+  transform: scale(1.05);
+  background-color: rgba(var(--primary-rgb, 144, 160, 217), 0.2);
 }
 
 body.light-theme .skill-tag {
   background-color: rgba(var(--primary-rgb-light, 58, 70, 124), 0.08);
   border-color: rgba(var(--primary-rgb-light, 58, 70, 124), 0.2);
+}
+
+body.light-theme .skill-tag:hover {
+  background-color: rgba(var(--primary-rgb-light, 58, 70, 124), 0.15);
 }
 
 /* Contact Section */
