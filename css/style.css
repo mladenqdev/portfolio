@@ -1,4 +1,9 @@
 /* Basic Reset */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* Offset for fixed header */
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -20,6 +25,7 @@
   --header-bg: rgba(35, 40, 62, 0.85); /* Semi-transparent --bg-color */
   --shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
     rgba(0, 0, 0, 0.06) 0px 0px 0px 1px; /* --shadow */
+  --primary-rgb: 144, 160, 217; /* RGB for #90a0d9 */
 }
 
 body.light-theme {
@@ -35,6 +41,7 @@ body.light-theme {
   --tag-text: var(--text-color);
   --header-bg: rgba(252, 252, 252, 0.85); /* Semi-transparent --bg-color */
   --shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; /* --shadow */
+  --primary-rgb-light: 58, 70, 124; /* RGB for #3a467c */
 }
 
 body {
@@ -119,7 +126,6 @@ header ul {
 }
 
 header ul a {
-  font-weight: bold;
   position: relative;
   padding-bottom: 4px;
   text-decoration: none; /* Ensure no default underline */
@@ -177,8 +183,8 @@ header ul a:hover::after {
 }
 
 #hero p {
-  max-width: 600px;
-  margin-bottom: 1rem; /* Reduced from 2rem */
+  max-width: 700px;
+  margin-bottom: 2rem; /* Reduced from 2rem */
 }
 
 .hero-links {
@@ -266,7 +272,7 @@ header ul a:hover::after {
 
 /* Projects Section */
 #projects {
-  /* padding-top: 40px; */
+  padding-top: 20px;
 }
 
 .project-display-area {
@@ -293,14 +299,16 @@ header ul a:hover::after {
 
 .carousel-content .project-top {
   display: flex;
-  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  /* flex-direction: column; */
+  flex-wrap: wrap; /* Assuming it wrapped originally */
   gap: 30px;
   margin-bottom: 20px;
 }
 
 .carousel-content .project-image {
-  flex: 1 1 50%; /* Take up half the space, allow shrinking/growing */
-  min-width: 300px; /* Minimum width before wrapping */
+  /* flex: 1 1 100%; */ /* Remove 100% basis */
+  flex: 1 1 50%; /* Restore approximate original flex value */
+  min-width: 300px; /* Restore original min-width if desired */
 }
 
 .carousel-content .project-image img {
@@ -312,8 +320,9 @@ header ul a:hover::after {
 }
 
 .carousel-content .project-stack {
-  flex: 1 1 40%; /* Take up slightly less space, allow shrinking/growing */
-  min-width: 250px;
+  /* flex: 1 1 100%; */ /* Remove 100% basis */
+  flex: 1 1 40%; /* Restore approximate original flex value */
+  min-width: 250px; /* Restore original min-width if desired */
 }
 
 .carousel-content .project-stack h4 {
@@ -321,15 +330,37 @@ header ul a:hover::after {
   color: var(--secondary-color);
 }
 
-.carousel-content .tech-stack span {
-  display: inline-block;
-  background-color: var(--tag-bg);
-  color: var(--tag-text);
-  padding: 4px 10px;
-  border-radius: 4px;
-  margin-right: 8px;
-  margin-bottom: 8px;
-  font-size: 0.9rem;
+/* New Tech Stack Bubble Styles */
+.tech-stack-bubbles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; /* Spacing between bubbles */
+}
+
+.tech-bubble {
+  background-color: rgba(
+    var(--primary-rgb, 144, 160, 217),
+    0.1
+  ); /* Use primary color with low opacity */
+  color: var(--primary-color);
+  padding: 8px 15px;
+  border-radius: 20px; /* Rounded bubble shape */
+  font-size: 0.85rem; /* Slightly smaller font */
+  border: 1px solid rgba(var(--primary-rgb, 144, 160, 217), 0.3);
+  display: inline-flex; /* Align items nicely */
+  align-items: center;
+}
+
+body.light-theme .tech-bubble {
+  /* Slightly different colors for light theme if needed */
+  background-color: rgba(var(--primary-rgb-light, 58, 70, 124), 0.08);
+  border-color: rgba(var(--primary-rgb-light, 58, 70, 124), 0.2);
+}
+
+.tech-bubble strong {
+  color: var(--secondary-color); /* Different color for category */
+  margin-right: 6px; /* Space after category */
+  font-weight: 600;
 }
 
 .carousel-content .project-description {

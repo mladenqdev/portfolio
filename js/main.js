@@ -85,13 +85,19 @@ function renderCurrentProject() {
   );
   if (!contentDiv) return;
 
-  const techList = project.techStack
-    .map((tech) => `<span>${tech}</span>`)
+  // Generate categorized tech stack HTML
+  const techListHtml = project.techStack
+    .map(
+      (tech) =>
+        `<span class="tech-bubble">
+      <strong>${tech.category}:</strong> ${tech.name}
+    </span>`
+    )
     .join("");
 
   // Use the simple, fill-based SVG directly for the external link
   const externalLinkSvg = `<svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true" width="24" height="24" fill="currentColor">
-<path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"></path>
+    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6v2H5v11h11v-6h2zM15 3h6v6h-2V5.707L12.354 12.354a1 1 0 1 1-1.414-1.414L17.293 4.5H15V3z"></path>
   </svg>`;
 
   contentDiv.innerHTML = `
@@ -106,7 +112,7 @@ function renderCurrentProject() {
       </div>
       <div class="project-stack">
         <h4>Tech Stack:</h4>
-        <div class="tech-stack">${techList}</div>
+        <div class="tech-stack-bubbles">${techListHtml}</div>
       </div>
     </div>
     <div class="project-description">
