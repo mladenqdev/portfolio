@@ -97,7 +97,7 @@ function renderCurrentProject() {
 
   // Use the simple, fill-based SVG directly for the external link
   const externalLinkSvg = `<svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true" width="24" height="24" fill="currentColor">
-    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6v2H5v11h11v-6h2zM15 3h6v6h-2V5.707L12.354 12.354a1 1 0 1 1-1.414-1.414L17.293 4.5H15V3z"></path>
+    <path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"></path>
   </svg>`;
 
   contentDiv.innerHTML = `
@@ -136,32 +136,48 @@ function renderCurrentProject() {
 function setupCarouselNav() {
   const prevBtn = document.getElementById("prev-project");
   const nextBtn = document.getElementById("next-project");
+  const contentDiv = document.querySelector(
+    "#projects-carousel .carousel-content"
+  ); // Get content div once
 
-  if (!prevBtn || !nextBtn) {
-    // Check if buttons exist
-    console.warn("Carousel navigation buttons not found.");
+  if (!prevBtn || !nextBtn || !contentDiv) {
+    // Added check for contentDiv
+    console.warn("Carousel navigation buttons or content area not found.");
     return;
   }
 
-  // Hide buttons if only one project
   if (projectsData.length <= 1) {
     prevBtn.style.display = "none";
     nextBtn.style.display = "none";
     return;
   } else {
-    prevBtn.style.display = "flex"; // Ensure visible if more than one project
+    prevBtn.style.display = "flex";
     nextBtn.style.display = "flex";
   }
 
+  const transitionDuration = 300; // Match CSS transition time in ms
+
+  function changeSlide(direction) {
+    contentDiv.classList.add("fading-out"); // Start fade out
+
+    setTimeout(() => {
+      if (direction === "prev") {
+        currentProjectIndex =
+          (currentProjectIndex - 1 + projectsData.length) % projectsData.length;
+      } else {
+        currentProjectIndex = (currentProjectIndex + 1) % projectsData.length;
+      }
+      renderCurrentProject(); // Update content AFTER fade out
+      contentDiv.classList.remove("fading-out"); // Start fade in
+    }, transitionDuration);
+  }
+
   prevBtn.addEventListener("click", () => {
-    currentProjectIndex =
-      (currentProjectIndex - 1 + projectsData.length) % projectsData.length;
-    renderCurrentProject();
+    changeSlide("prev");
   });
 
   nextBtn.addEventListener("click", () => {
-    currentProjectIndex = (currentProjectIndex + 1) % projectsData.length;
-    renderCurrentProject();
+    changeSlide("next");
   });
 }
 
@@ -170,18 +186,44 @@ function renderWorkExperience(experience) {
   if (!container) return;
   container.innerHTML = ""; // Clear existing
 
+  // Reverse the array to show newest first, then iterate
+  const reversedExperience = [...experience].reverse();
+
   // Simple list for now, timeline styling will be CSS-driven
-  experience.forEach((job) => {
+  reversedExperience.forEach((job) => {
     const jobElement = document.createElement("div");
     jobElement.className = "job-entry";
 
-    const descriptionPoints = job.description
-      .map((point) => `<li>${point}</li>`)
+    const descriptionPoints = job.description // Operate on the current job's description
+      .map((point) => {
+        const pointLower = point.toLowerCase();
+        if (pointLower.startsWith("key project:")) {
+          const colonIndex = point.indexOf(":");
+          if (colonIndex !== -1) {
+            const label = point.substring(0, colonIndex + 1);
+            const content = point.substring(colonIndex + 1);
+            return `<li><strong>${label}</strong> ${content.trim()}</li>`; // Bold label, add space, then content
+          } else {
+            return `<li><strong>${point}</strong></li>`; // Fallback (shouldn't happen)
+          }
+        } else if (pointLower.startsWith("technologies used:")) {
+          const colonIndex = point.indexOf(":");
+          if (colonIndex !== -1) {
+            const label = point.substring(0, colonIndex + 1);
+            const content = point.substring(colonIndex + 1);
+            return `<li><strong>${label}</strong> ${content.trim()}</li>`; // Bold label, add space, then content
+          } else {
+            return `<li><strong>${point}</strong></li>`; // Fallback
+          }
+        } else {
+          return `<li>${point}</li>`; // Standard item
+        }
+      })
       .join("");
 
     jobElement.innerHTML = `
       <h3>${job.jobTitle}</h3>
-      <h4>${job.company} | ${job.location}</h4>
+      <h4>${job.company}${job.location ? ` | ${job.location}` : ""}</h4>
       <p class="dates">${job.startDate} - ${job.endDate}</p>
       <ul>${descriptionPoints}</ul>
     `;

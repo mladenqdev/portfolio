@@ -45,26 +45,25 @@
   ],
   "workExperience": [
     {
-      "jobTitle": "FRONT-END REACT DEVELOPER",
-      "company": "WONGDOODY",
+      "jobTitle": "Frontend Developer",
+      "company": "VEGA IT",
       "location": "",
-      "startDate": "2022",
-      "endDate": "Present",
+      "startDate": "January 2021",
+      "endDate": "January 2022",
       "description": [
-        "Key project: B2B Shoppable solution in the \"Where To Buy\" world used by major global brands such as 3M, Procter & Gamble, Intel, Lego, Pierre Fabre, Samsung and many more.",
-        "Hands-on coding with a focus on front-end technologies",
-        "Maintaining and enhancing multiple applications",
-        "Performing peer code reviews on a daily basis",
-        "Contributing to product decisions with technical input",
-        "Technologies used: React, Angular, Material-UI (MUI), Styled-Components, Redux, React Query, Context API, Cypress, Jest, React Testing Library, AWS, GitHub Actions"
+        "Key project: Developed an in-house web app for tracking inventory using QR code scanning.",
+        "Creating pixel-perfect pages and components for various web platforms",
+        "Developing web pages with performance and accessibility in mind",
+        "Participating in biweekly team meetings and various internal knowledge-sharing events",
+        "Technologies used: React, jQuery, Handlebars.js, Sass"
       ]
     },
     {
-      "jobTitle": "FRONT-END REACT DEVELOPER",
+      "jobTitle": "Frontend Developer",
       "company": "THINKING ENGINEERS",
       "location": "",
-      "startDate": "2022",
-      "endDate": "2022",
+      "startDate": "January 2022",
+      "endDate": "September 2022",
       "description": [
         "Key project: \"Social Thinking\" eCommerce Platform, which helps people of different ages and mental abilities find their way through the complex social world, relying on unique strategies developed by a team of devoted and diligent experts.",
         "Translating designs and wireframes into high quality code",
@@ -74,16 +73,18 @@
       ]
     },
     {
-      "jobTitle": "FRONT-END DEVELOPER",
-      "company": "VEGA IT",
+      "jobTitle": "Frontend Developer",
+      "company": "WONGDOODY",
       "location": "",
-      "startDate": "2021",
-      "endDate": "2021",
+      "startDate": "September 2022",
+      "endDate": "Present",
       "description": [
-        "Creating pixel-perfect pages and components for various web platforms",
-        "Developing web pages with performance and accessibility in mind",
-        "Participating in biweekly team meetings and various internal knowledge-sharing events",
-        "Technologies used: jQuery, Handlebars.js, CSS, Sass"
+        "Key project: B2B Shoppable solution in the \"Where To Buy\" world used by major global brands such as 3M, Procter & Gamble, Intel, Lego, Pierre Fabre, Samsung and many more.",
+        "Hands-on coding with a focus on front-end technologies",
+        "Maintaining and enhancing multiple applications",
+        "Performing peer code reviews on a daily basis",
+        "Contributing to product decisions with technical input",
+        "Technologies used: React, Angular, Material-UI (MUI), Styled-Components, Redux, React Query, Context API, Cypress, Jest, React Testing Library, AWS, GitHub Actions"
       ]
     }
   ],
