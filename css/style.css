@@ -266,51 +266,148 @@ header ul a:hover::after {
 
 /* Projects Section */
 #projects {
-  padding-top: 40px; /* Reduced from section default 80px */
+  /* padding-top: 40px; */
 }
 
-.projects-container {
-  display: grid;
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(350px, 1fr)
-  ); /* Responsive grid */
-  gap: 30px;
+.project-display-area {
+  /* New wrapper */
+  display: flex;
+  align-items: center; /* Vertically center buttons and carousel */
+  gap: 15px; /* Space between buttons and carousel */
 }
 
-.project-card {
+#projects-carousel {
   background-color: var(--card-bg);
-  padding: 25px;
   border-radius: 8px;
   border: 1px solid var(--border-color);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.project-card:hover {
-  transform: translateY(-5px);
+  padding: 25px; /* Slightly reduced padding */
+  /* position: relative; */ /* No longer needed for nav */
   box-shadow: var(--shadow);
+  overflow: hidden;
+  flex-grow: 1; /* Allow carousel to take up remaining space */
 }
 
-.project-card img {
+.carousel-content {
+  /* Content will be populated by JS */
+}
+
+.carousel-content .project-top {
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  gap: 30px;
+  margin-bottom: 20px;
+}
+
+.carousel-content .project-image {
+  flex: 1 1 50%; /* Take up half the space, allow shrinking/growing */
+  min-width: 300px; /* Minimum width before wrapping */
+}
+
+.carousel-content .project-image img {
   width: 100%;
   height: auto;
+  border-radius: 6px;
+  object-fit: cover;
+  border: 1px solid var(--border-color);
+}
+
+.carousel-content .project-stack {
+  flex: 1 1 40%; /* Take up slightly less space, allow shrinking/growing */
+  min-width: 250px;
+}
+
+.carousel-content .project-stack h4 {
   margin-bottom: 15px;
+  color: var(--secondary-color);
+}
+
+.carousel-content .tech-stack span {
+  display: inline-block;
+  background-color: var(--tag-bg);
+  color: var(--tag-text);
+  padding: 4px 10px;
   border-radius: 4px;
-  object-fit: cover; /* Ensure images cover the area nicely */
-  max-height: 200px; /* Limit image height */
+  margin-right: 8px;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
 }
 
-.project-card h3 {
-  color: var(--primary-color);
-  margin-bottom: 10px;
+.carousel-content .project-description {
+  margin-bottom: 25px;
+  font-size: 1rem;
+  line-height: 1.7;
 }
 
-.project-card p {
-  margin-bottom: 15px;
-  font-size: 0.95rem;
+.carousel-content .project-links {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
 }
+
+.carousel-content .project-links a {
+  color: var(--link-color);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px; /* Space between icon and text (if any) */
+  font-weight: bold;
+  padding-bottom: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel-content .project-links a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--primary-color);
+  transition: width 0.3s ease;
+}
+
+.carousel-content .project-links a:hover::after {
+  width: 100%;
+}
+
+.carousel-content .project-links svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
+/* Carousel Navigation */
+/* Removed old .carousel-nav absolute positioning styles */
+
+.carousel-nav-btn {
+  /* New styles for external buttons */
+  background-color: var(--card-bg); /* Match card background */
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  border-radius: 50%;
+  width: 45px; /* Adjusted size */
+  height: 45px;
+  font-size: 1.8rem; /* Adjusted size */
+  line-height: 1; /* Better vertical alignment */
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  flex-shrink: 0; /* Prevent buttons from shrinking */
+}
+
+.carousel-nav-btn:hover {
+  background-color: var(--primary-color);
+  color: var(--card-bg);
+  border-color: var(--primary-color);
+}
+
+/* Removed old .project-card styles */
 
 .tech-stack span {
+  /* Keep general tech stack styles if used elsewhere */
   display: inline-block;
   background-color: var(--tag-bg);
   color: var(--tag-text);
@@ -319,12 +416,6 @@ header ul a:hover::after {
   margin-right: 5px;
   margin-bottom: 10px;
   font-size: 0.8rem;
-}
-
-.project-links a {
-  margin-right: 15px;
-  font-weight: bold;
-  color: var(--link-color);
 }
 
 /* Work Experience Section */

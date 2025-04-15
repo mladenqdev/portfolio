@@ -6,6 +6,9 @@ document.addEventListener("DOMContentLoaded", () => {
   fetchData(); // Fetch dynamic data
 });
 
+let projectsData = [];
+let currentProjectIndex = 0;
+
 async function fetchData() {
   try {
     const response = await fetch("data/portfolio.json");
@@ -14,15 +17,33 @@ async function fetchData() {
     }
     const data = await response.json();
     console.log("Data fetched successfully:", data);
+
+    // Store projects data
+    projectsData = data.projects || [];
+
     // Call rendering functions for DYNAMIC content
     setLogoLink(data.personalInfo);
     renderHeroLinks(data.personalInfo);
-    renderProjects(data.projects);
+    if (projectsData.length > 0) {
+      renderCurrentProject(); // Initial render
+      setupCarouselNav(); // Setup nav after data is ready
+    } else {
+      // Handle case where there are no projects
+      const contentDiv = document.querySelector(
+        "#projects-carousel .carousel-content"
+      );
+      if (contentDiv) contentDiv.innerHTML = "<p>No projects to display.</p>";
+    }
     renderWorkExperience(data.workExperience);
     renderSkills(data.skills);
     renderContactButton(data.personalInfo);
   } catch (error) {
     console.error("Could not fetch portfolio data:", error);
+    // Display error in carousel area
+    const contentDiv = document.querySelector(
+      "#projects-carousel .carousel-content"
+    );
+    if (contentDiv) contentDiv.innerHTML = "<p>Error loading projects.</p>";
   }
 }
 
@@ -44,49 +65,97 @@ function renderHeroLinks(info) {
     <a href="${info.resumeUrl}" target="_blank" rel="noopener noreferrer" class="btn">Resume</a> 
     <a href="${info.gitlab}" target="_blank" rel="noopener noreferrer" class="icon-link" aria-label="${gitlabLabel}"> 
       <svg class="icon-svg" aria-hidden="true">
-        <use xlink:href="assets/sprite.svg#icon-code"></use>
+        <use href="/assets/sprite.svg#icon-code"></use>
       </svg>
     </a> 
     <a href="${info.linkedin}" target="_blank" rel="noopener noreferrer" class="icon-link" aria-label="LinkedIn">
       <svg class="icon-svg" aria-hidden="true">
-        <use xlink:href="assets/sprite.svg#icon-linkedin"></use>
+        <use href="/assets/sprite.svg#icon-linkedin"></use>
       </svg>
     </a> 
   `;
 }
 
-function renderProjects(projects) {
-  const container = document.querySelector(".projects-container");
-  if (!container) return;
-  container.innerHTML = ""; // Clear existing content
+function renderCurrentProject() {
+  if (!projectsData || projectsData.length === 0) return;
 
-  projects.forEach((project) => {
-    const card = document.createElement("div");
-    card.className = "project-card"; // Add a class for styling
+  const project = projectsData[currentProjectIndex];
+  const contentDiv = document.querySelector(
+    "#projects-carousel .carousel-content"
+  );
+  if (!contentDiv) return;
 
-    const techList = project.techStack
-      .map((tech) => `<span>${tech}</span>`)
-      .join("");
+  const techList = project.techStack
+    .map((tech) => `<span>${tech}</span>`)
+    .join("");
 
-    card.innerHTML = `
-      ${
-        project.imageUrl
-          ? `<img src="${project.imageUrl}" alt="${project.title} screenshot">`
-          : ""
-      } 
-      <h3>${project.title}</h3>
-      <p>${project.description}</p>
-      <div class="tech-stack">${techList}</div>
-      <div class="project-links">
-        <a href="${
-          project.codeUrl
-        }" target="_blank" rel="noopener noreferrer">Code</a>
-        <a href="${
-          project.liveUrl
-        }" target="_blank" rel="noopener noreferrer">Live Demo</a>
+  // Use the simple, fill-based SVG directly for the external link
+  const externalLinkSvg = `<svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true" width="24" height="24" fill="currentColor">
+<path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"></path>
+  </svg>`;
+
+  contentDiv.innerHTML = `
+    <h3>${project.title}</h3> 
+    <div class="project-top">
+      <div class="project-image">
+        ${
+          project.imageUrl
+            ? `<img src="${project.imageUrl}" alt="${project.title} screenshot">`
+            : '<div class="no-image">No Image Available</div>'
+        } 
       </div>
-    `;
-    container.appendChild(card);
+      <div class="project-stack">
+        <h4>Tech Stack:</h4>
+        <div class="tech-stack">${techList}</div>
+      </div>
+    </div>
+    <div class="project-description">
+      <p>${project.description}</p>
+    </div>
+    <div class="project-links">
+      <a href="${
+        project.codeUrl
+      }" target="_blank" rel="noopener noreferrer" aria-label="View Code">
+        <svg class="icon-svg" aria-hidden="true"><use href="/assets/sprite.svg#icon-code"></use></svg>
+      </a>
+      <a href="${
+        project.liveUrl
+      }" target="_blank" rel="noopener noreferrer" aria-label="Live Demo">
+        ${externalLinkSvg}
+      </a>
+    </div>
+  `;
+}
+
+function setupCarouselNav() {
+  const prevBtn = document.getElementById("prev-project");
+  const nextBtn = document.getElementById("next-project");
+
+  if (!prevBtn || !nextBtn) {
+    // Check if buttons exist
+    console.warn("Carousel navigation buttons not found.");
+    return;
+  }
+
+  // Hide buttons if only one project
+  if (projectsData.length <= 1) {
+    prevBtn.style.display = "none";
+    nextBtn.style.display = "none";
+    return;
+  } else {
+    prevBtn.style.display = "flex"; // Ensure visible if more than one project
+    nextBtn.style.display = "flex";
+  }
+
+  prevBtn.addEventListener("click", () => {
+    currentProjectIndex =
+      (currentProjectIndex - 1 + projectsData.length) % projectsData.length;
+    renderCurrentProject();
+  });
+
+  nextBtn.addEventListener("click", () => {
+    currentProjectIndex = (currentProjectIndex + 1) % projectsData.length;
+    renderCurrentProject();
   });
 }
 
@@ -146,8 +215,8 @@ function renderCopyrightYear() {
 
 // --- Theme Toggle Logic ---
 
-const sunIconHTML = `<svg class="icon-svg" aria-hidden="true"><use xlink:href="assets/sprite.svg#icon-sun"></use></svg>`;
-const moonIconHTML = `<svg class="icon-svg" aria-hidden="true"><use xlink:href="assets/sprite.svg#icon-moon"></use></svg>`;
+const sunIconHTML = `<svg class="icon-svg" aria-hidden="true"><use href="/assets/sprite.svg#icon-sun"></use></svg>`;
+const moonIconHTML = `<svg class="icon-svg" aria-hidden="true"><use href="/assets/sprite.svg#icon-moon"></use></svg>`;
 
 function setupThemeToggle() {
   const themeToggleButton = document.getElementById("theme-toggle");
