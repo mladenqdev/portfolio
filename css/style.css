@@ -541,7 +541,7 @@ body.light-theme .tech-bubble {
 .job-entry::before {
   content: "";
   position: absolute;
-  left: -28.5px;
+  left: -31.5px;
   top: 1.1rem;
   width: 11px;
   height: 11px;
@@ -792,7 +792,7 @@ footer {
   }
 
   .job-entry::before {
-    left: -17px;
+    left: -19px;
   }
 
   h1 {
