@@ -52,7 +52,7 @@ body {
 }
 
 section {
-  padding: 50px 10px;
+  padding: 30px 10px;
   max-width: 1044px;
   margin: 0 auto;
 }
@@ -271,9 +271,6 @@ header ul a:hover::after {
 }
 
 /* Projects Section */
-#projects {
-  padding-top: 20px;
-}
 
 .project-display-area {
   /* New wrapper */
@@ -287,10 +284,23 @@ header ul a:hover::after {
   border-radius: 8px;
   border: 1px solid var(--border-color);
   padding: 25px; /* Slightly reduced padding */
-  /* position: relative; */ /* No longer needed for nav */
   box-shadow: var(--shadow);
   overflow: hidden;
   flex-grow: 1; /* Allow carousel to take up remaining space */
+  position: relative; /* Ensure it's a positioning context */
+}
+
+#project-counter {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background-color: rgba(0, 0, 0, 0.2); /* Subtle background */
+  color: var(--secondary-color);
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  z-index: 2; /* Above content but below potential modals */
 }
 
 .carousel-content {
@@ -457,9 +467,6 @@ body.light-theme .tech-bubble {
 
 /* Work Experience Section */
 
-#work-experience {
-  padding-top: 20px;
-}
 .experience-container {
   position: relative; /* Needed for absolute positioning of the timeline */
   display: flex;
@@ -530,16 +537,35 @@ body.light-theme .tech-bubble {
 .skills-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: 15px; /* Keep the gap between skill bubbles */
   justify-content: center;
 }
 
 .skill-tag {
-  background-color: var(--tag-bg);
-  color: var(--tag-text);
-  padding: 8px 15px;
-  border-radius: 5px;
-  font-size: 0.9rem;
+  /* background-color: var(--tag-bg); */ /* Remove old background */
+  /* color: var(--tag-text); */ /* Remove old text color */
+  /* border-radius: 5px; */ /* Remove old border-radius */
+  /* font-size: 0.9rem; */ /* Remove old font-size */
+
+  /* Apply styles similar to .tech-bubble */
+  background-color: rgba(
+    var(--primary-rgb, 144, 160, 217),
+    0.1
+  ); /* Use primary color with low opacity */
+  color: var(--primary-color);
+  padding: 8px 15px; /* Padding remains the same */
+  border-radius: 20px; /* Rounded bubble shape */
+  font-size: 0.85rem; /* Match tech bubble font size */
+  border: 1px solid rgba(var(--primary-rgb, 144, 160, 217), 0.3);
+  display: inline-flex; /* Ensure proper alignment if needed */
+  align-items: center;
+}
+
+body.light-theme .skill-tag {
+  /* Apply light theme adjustments similar to .tech-bubble */
+  background-color: rgba(var(--primary-rgb-light, 58, 70, 124), 0.08);
+  border-color: rgba(var(--primary-rgb-light, 58, 70, 124), 0.2);
+  /* color: var(--primary-color); */ /* Color should already be correct via variable */
 }
 
 /* Contact Section */

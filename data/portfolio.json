@@ -91,19 +91,21 @@
   "skills": [
     "HTML",
     "CSS",
+    "Sass",
     "JavaScript",
     "TypeScript",
+    "Styled-Components",
     "React",
+    "Redux",
+    "React Query",
+    "React Testing Library",
+    "Jest",
     "Next.js",
-    "Vue.js",
-    "Node.js",
+    "Material UI",
     "Tailwind CSS",
-    "Sass",
     "Git",
+    "Github Actions",
     "CI/CD",
-    "Prisma",
-    "PostgreSQL",
-    "Firebase",
-    "Azure IoT Hub"
+    "Firebase"
   ]
 }

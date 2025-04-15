@@ -27,6 +27,20 @@ async function fetchData() {
     if (projectsData.length > 0) {
       renderCurrentProject(); // Initial render
       setupCarouselNav(); // Setup nav after data is ready
+      // Add project counter if more than one project
+      if (projectsData.length > 1) {
+        const carouselContainer = document.getElementById("projects-carousel");
+        if (carouselContainer) {
+          const counterElement = document.createElement("div");
+          counterElement.id = "project-counter";
+          carouselContainer.appendChild(counterElement);
+          // We need to ensure carouselContainer can contain positioned elements
+          if (getComputedStyle(carouselContainer).position === "static") {
+            carouselContainer.style.position = "relative";
+          }
+          updateProjectCounter(); // Initial update
+        }
+      }
     } else {
       // Handle case where there are no projects
       const contentDiv = document.querySelector(
@@ -133,6 +147,15 @@ function renderCurrentProject() {
   `;
 }
 
+function updateProjectCounter() {
+  const counterElement = document.getElementById("project-counter");
+  if (counterElement && projectsData.length > 1) {
+    counterElement.textContent = `${currentProjectIndex + 1} / ${
+      projectsData.length
+    }`;
+  }
+}
+
 function setupCarouselNav() {
   const prevBtn = document.getElementById("prev-project");
   const nextBtn = document.getElementById("next-project");
@@ -168,6 +191,7 @@ function setupCarouselNav() {
         currentProjectIndex = (currentProjectIndex + 1) % projectsData.length;
       }
       renderCurrentProject(); // Update content AFTER fade out
+      updateProjectCounter(); // Update counter text
       contentDiv.classList.remove("fading-out"); // Start fade in
     }, transitionDuration);
   }
