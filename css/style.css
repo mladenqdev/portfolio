@@ -287,6 +287,7 @@ header ul a:hover::after {
   overflow: hidden;
   flex-grow: 1;
   position: relative;
+  cursor: grab;
 }
 
 #project-counter {
@@ -329,6 +330,10 @@ header ul a:hover::after {
   border-radius: 6px;
   object-fit: cover;
   border: 1px solid var(--border-color);
+  /* prevent browser default image drag */
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 .carousel-content .project-stack {

@@ -9,6 +9,12 @@ document.addEventListener("DOMContentLoaded", () => {
 let projectsData = [];
 let currentProjectIndex = 0;
 
+let isDragging = false;
+let startX;
+let currentX;
+const dragThreshold = 50; // min pixels to drag to trigger slide change
+let carousel = null; // define carousel globally for handleDragEnd
+
 async function fetchData() {
   try {
     const response = await fetch("data/portfolio.json");
@@ -154,6 +160,100 @@ function updateProjectCounter() {
   }
 }
 
+function setupCarouselInteraction() {
+  carousel = document.getElementById("projects-carousel");
+  if (!carousel) return;
+
+  // --- MOUSE EVENTS ---
+  carousel.addEventListener("mousedown", (e) => {
+    if (e.button !== 0) return; // only main (left) click
+    isDragging = true;
+    startX = e.pageX - carousel.offsetLeft;
+    currentX = startX;
+    carousel.style.cursor = "grabbing";
+    carousel.style.userSelect = "none";
+  });
+
+  carousel.addEventListener("mousemove", (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    currentX = e.pageX - carousel.offsetLeft;
+  });
+
+  // use window for mouseup/mouseleave to catch events outside carousel bounds
+  window.addEventListener("mouseup", handleDragEnd);
+  window.addEventListener("mouseleave", handleDragEnd);
+
+  // --- TOUCH EVENTS ---
+  carousel.addEventListener(
+    "touchstart",
+    (e) => {
+      isDragging = true;
+      startX = e.touches[0].pageX - carousel.offsetLeft;
+      currentX = startX;
+    },
+    { passive: true }
+  );
+
+  carousel.addEventListener(
+    "touchmove",
+    (e) => {
+      if (!isDragging) return;
+      currentX = e.touches[0].pageX - carousel.offsetLeft;
+      const diffX = currentX - startX;
+      if (Math.abs(diffX) > 10) {
+        e.preventDefault();
+      }
+    },
+    { passive: false }
+  );
+
+  carousel.addEventListener("touchend", handleDragEnd);
+}
+
+function handleDragEnd(e) {
+  if (!isDragging) return;
+  if (e.type === "mouseleave" && !isDragging) return;
+
+  if (
+    e.type === "mouseup" &&
+    e.target !== carousel &&
+    !carousel.contains(e.target) &&
+    isDragging
+  ) {
+  } else if (
+    e.type !== "mouseup" &&
+    e.type !== "touchend" &&
+    e.type !== "mouseleave"
+  ) {
+  }
+
+  isDragging = false;
+  if (carousel) {
+    carousel.style.cursor = "grab";
+    carousel.style.removeProperty("user-select");
+  }
+
+  if (startX === undefined || currentX === undefined) {
+    startX = undefined;
+    currentX = undefined;
+    return;
+  }
+
+  const diffX = currentX - startX;
+
+  if (Math.abs(diffX) > dragThreshold) {
+    if (diffX < 0) {
+      window.changeSlideExternally("next");
+    } else {
+      window.changeSlideExternally("prev");
+    }
+  }
+
+  startX = undefined;
+  currentX = undefined;
+}
+
 function setupCarouselNav() {
   const prevBtn = document.getElementById("prev-project");
   const nextBtn = document.getElementById("next-project");
@@ -177,9 +277,9 @@ function setupCarouselNav() {
 
   const transitionDuration = 300;
 
-  function changeSlide(direction) {
+  window.changeSlideExternally = function (direction) {
+    if (contentDiv.classList.contains("fading-out")) return;
     contentDiv.classList.add("fading-out");
-
     setTimeout(() => {
       if (direction === "prev") {
         currentProjectIndex =
@@ -191,15 +291,17 @@ function setupCarouselNav() {
       updateProjectCounter();
       contentDiv.classList.remove("fading-out");
     }, transitionDuration);
-  }
+  };
 
   prevBtn.addEventListener("click", () => {
-    changeSlide("prev");
+    window.changeSlideExternally("prev");
   });
 
   nextBtn.addEventListener("click", () => {
-    changeSlide("next");
+    window.changeSlideExternally("next");
   });
+
+  setupCarouselInteraction();
 }
 
 function renderWorkExperience(experience) {
