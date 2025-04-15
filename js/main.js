@@ -1,9 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("DOM fully loaded and parsed");
-  setupThemeToggle(); // Setup toggle now that button exists in HTML
-  renderCopyrightYear(); // Render copyright year immediately
-  setupScrollToTopButton(); // Add setup for scroll button
-  fetchData(); // Fetch dynamic data
+  setupThemeToggle();
+  renderCopyrightYear();
+  setupScrollToTopButton();
+  fetchData();
 });
 
 let projectsData = [];
@@ -18,31 +17,28 @@ async function fetchData() {
     const data = await response.json();
     console.log("Data fetched successfully:", data);
 
-    // Store projects data
     projectsData = data.projects || [];
 
-    // Call rendering functions for DYNAMIC content
+    // call rendering functions for dynamic content
     setLogoLink(data.personalInfo);
     renderHeroLinks(data.personalInfo);
     if (projectsData.length > 0) {
-      renderCurrentProject(); // Initial render
-      setupCarouselNav(); // Setup nav after data is ready
-      // Add project counter if more than one project
+      renderCurrentProject(); // initial render
+      setupCarouselNav(); // setup nav after data is ready
+      // add project counter if more than one project
       if (projectsData.length > 1) {
         const carouselContainer = document.getElementById("projects-carousel");
         if (carouselContainer) {
           const counterElement = document.createElement("div");
           counterElement.id = "project-counter";
           carouselContainer.appendChild(counterElement);
-          // We need to ensure carouselContainer can contain positioned elements
           if (getComputedStyle(carouselContainer).position === "static") {
             carouselContainer.style.position = "relative";
           }
-          updateProjectCounter(); // Initial update
+          updateProjectCounter();
         }
       }
     } else {
-      // Handle case where there are no projects
       const contentDiv = document.querySelector(
         "#projects-carousel .carousel-content"
       );
@@ -53,7 +49,6 @@ async function fetchData() {
     renderContactButton(data.personalInfo);
   } catch (error) {
     console.error("Could not fetch portfolio data:", error);
-    // Display error in carousel area
     const contentDiv = document.querySelector(
       "#projects-carousel .carousel-content"
     );
@@ -73,7 +68,7 @@ function setLogoLink(info) {
 function renderHeroLinks(info) {
   const heroLinksContainer = document.querySelector("#hero .hero-links");
   if (!heroLinksContainer) return;
-  const gitlabLabel = "GitLab"; // Or "Code Repository"?
+  const gitlabLabel = "GitLab";
 
   heroLinksContainer.innerHTML = `
     <a href="${info.resumeUrl}" target="_blank" rel="noopener noreferrer" class="btn">Resume</a> 
@@ -99,7 +94,7 @@ function renderCurrentProject() {
   );
   if (!contentDiv) return;
 
-  // Generate categorized tech stack HTML
+  // generate categorized tech stack HTML
   const techListHtml = project.techStack
     .map(
       (tech) =>
@@ -161,10 +156,9 @@ function setupCarouselNav() {
   const nextBtn = document.getElementById("next-project");
   const contentDiv = document.querySelector(
     "#projects-carousel .carousel-content"
-  ); // Get content div once
+  );
 
   if (!prevBtn || !nextBtn || !contentDiv) {
-    // Added check for contentDiv
     console.warn("Carousel navigation buttons or content area not found.");
     return;
   }
@@ -178,10 +172,10 @@ function setupCarouselNav() {
     nextBtn.style.display = "flex";
   }
 
-  const transitionDuration = 300; // Match CSS transition time in ms
+  const transitionDuration = 300;
 
   function changeSlide(direction) {
-    contentDiv.classList.add("fading-out"); // Start fade out
+    contentDiv.classList.add("fading-out");
 
     setTimeout(() => {
       if (direction === "prev") {
@@ -190,9 +184,9 @@ function setupCarouselNav() {
       } else {
         currentProjectIndex = (currentProjectIndex + 1) % projectsData.length;
       }
-      renderCurrentProject(); // Update content AFTER fade out
-      updateProjectCounter(); // Update counter text
-      contentDiv.classList.remove("fading-out"); // Start fade in
+      renderCurrentProject();
+      updateProjectCounter();
+      contentDiv.classList.remove("fading-out");
     }, transitionDuration);
   }
 
@@ -208,17 +202,15 @@ function setupCarouselNav() {
 function renderWorkExperience(experience) {
   const container = document.querySelector(".experience-container");
   if (!container) return;
-  container.innerHTML = ""; // Clear existing
+  container.innerHTML = "";
 
-  // Reverse the array to show newest first, then iterate
   const reversedExperience = [...experience].reverse();
 
-  // Simple list for now, timeline styling will be CSS-driven
   reversedExperience.forEach((job) => {
     const jobElement = document.createElement("div");
     jobElement.className = "job-entry";
 
-    const descriptionPoints = job.description // Operate on the current job's description
+    const descriptionPoints = job.description
       .map((point) => {
         const pointLower = point.toLowerCase();
         if (pointLower.startsWith("key project:")) {
@@ -226,21 +218,21 @@ function renderWorkExperience(experience) {
           if (colonIndex !== -1) {
             const label = point.substring(0, colonIndex + 1);
             const content = point.substring(colonIndex + 1);
-            return `<li><strong>${label}</strong> ${content.trim()}</li>`; // Bold label, add space, then content
+            return `<li><strong>${label}</strong> ${content.trim()}</li>`;
           } else {
-            return `<li><strong>${point}</strong></li>`; // Fallback (shouldn't happen)
+            return `<li><strong>${point}</strong></li>`;
           }
         } else if (pointLower.startsWith("technologies used:")) {
           const colonIndex = point.indexOf(":");
           if (colonIndex !== -1) {
             const label = point.substring(0, colonIndex + 1);
             const content = point.substring(colonIndex + 1);
-            return `<li><strong>${label}</strong> ${content.trim()}</li>`; // Bold label, add space, then content
+            return `<li><strong>${label}</strong> ${content.trim()}</li>`;
           } else {
-            return `<li><strong>${point}</strong></li>`; // Fallback
+            return `<li><strong>${point}</strong></li>`;
           }
         } else {
-          return `<li>${point}</li>`; // Standard item
+          return `<li>${point}</li>`;
         }
       })
       .join("");
@@ -258,7 +250,7 @@ function renderWorkExperience(experience) {
 function renderSkills(skills) {
   const container = document.querySelector(".skills-container");
   if (!container) return;
-  container.innerHTML = ""; // Clear existing
+  container.innerHTML = "";
 
   skills.forEach((skill) => {
     const skillTag = document.createElement("span");
@@ -298,11 +290,10 @@ function setupThemeToggle() {
     document.body.classList.add("light-theme");
     if (themeToggleButton) themeToggleButton.innerHTML = moonIconHTML;
   } else {
-    // Default dark theme
+    // default dark theme
     if (themeToggleButton) themeToggleButton.innerHTML = sunIconHTML;
   }
 
-  // Add listener now that button is guaranteed to be in HTML
   if (themeToggleButton) {
     themeToggleButton.addEventListener("click", toggleTheme);
   }
@@ -326,7 +317,7 @@ function toggleTheme() {
 
 function setupScrollToTopButton() {
   const scrollToTopBtn = document.getElementById("scroll-to-top");
-  const scrollThreshold = 300; // Pixels to scroll before showing button
+  const scrollThreshold = 300; // pixels to scroll before showing button
 
   if (!scrollToTopBtn) return;
 
@@ -339,10 +330,10 @@ function setupScrollToTopButton() {
   });
 
   scrollToTopBtn.addEventListener("click", (event) => {
-    event.preventDefault(); // Prevent default anchor behavior
+    event.preventDefault();
     window.scrollTo({
       top: 0,
-      behavior: "smooth", // Smooth scroll
+      behavior: "smooth",
     });
   });
 }

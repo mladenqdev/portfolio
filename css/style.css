@@ -1,7 +1,7 @@
 /* Basic Reset */
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 80px; /* Offset for fixed header */
+  scroll-padding-top: 80px; /* fixed header offset */
 }
 
 * {
@@ -13,35 +13,35 @@ html {
 /* Theme Variables */
 :root {
   /* Dark Theme (Default) */
-  --bg-color: #23283e; /* --clr-bg */
-  --card-bg: #2a2f4c; /* --clr-bg-alt */
-  --text-color: #bdbddd; /* --clr-fg */
-  --primary-color: #90a0d9; /* --clr-primary */
-  --secondary-color: #cdcdff; /* --clr-fg-alt */
-  --link-color: var(--primary-color); /* Use primary for links now */
-  --border-color: #3a3f5c; /* Slightly darker card bg */
-  --tag-bg: var(--card-bg); /* Use card bg for tags */
-  --tag-text: var(--text-color); /* Use main text for tags */
-  --header-bg: rgba(35, 40, 62, 0.85); /* Semi-transparent --bg-color */
+  --bg-color: #23283e;
+  --card-bg: #2a2f4c;
+  --text-color: #bdbddd;
+  --primary-color: #90a0d9;
+  --secondary-color: #cdcdff;
+  --link-color: var(--primary-color);
+  --border-color: #3a3f5c;
+  --tag-bg: var(--card-bg);
+  --tag-text: var(--text-color);
+  --header-bg: rgba(35, 40, 62, 0.85);
   --shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
-    rgba(0, 0, 0, 0.06) 0px 0px 0px 1px; /* --shadow */
-  --primary-rgb: 144, 160, 217; /* RGB for #90a0d9 */
+    rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+  --primary-rgb: 144, 160, 217;
 }
 
 body.light-theme {
   /* Light Theme */
-  --bg-color: #fcfcfc; /* --clr-bg */
-  --card-bg: #ffffff; /* --clr-bg-alt */
-  --text-color: #555555; /* --clr-fg */
-  --primary-color: #3a467c; /* --clr-primary */
-  --secondary-color: #444444; /* --clr-fg-alt */
+  --bg-color: #fcfcfc;
+  --card-bg: #ffffff;
+  --text-color: #555555;
+  --primary-color: #3a467c;
+  --secondary-color: #444444;
   --link-color: var(--primary-color);
-  --border-color: #eeeeee; /* Lighter border */
+  --border-color: #eeeeee;
   --tag-bg: var(--card-bg);
   --tag-text: var(--text-color);
-  --header-bg: rgba(252, 252, 252, 0.85); /* Semi-transparent --bg-color */
-  --shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; /* --shadow */
-  --primary-rgb-light: 58, 70, 124; /* RGB for #3a467c */
+  --header-bg: rgba(252, 252, 252, 0.85);
+  --shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  --primary-rgb-light: 58, 70, 124;
 }
 
 body {
@@ -87,12 +87,12 @@ h4 {
 }
 
 .highlight {
-  color: var(--primary-color); /* Apply primary color to highlighted elements */
+  color: var(--primary-color);
 }
 
 a {
   color: var(--link-color);
-  text-decoration: none; /* Remove default underline globally */
+  text-decoration: none;
 }
 
 /* Header */
@@ -128,23 +128,23 @@ header ul {
 header ul a {
   position: relative;
   padding-bottom: 4px;
-  text-decoration: none; /* Ensure no default underline */
-  overflow: hidden; /* Hide overflow for clean effect */
+  text-decoration: none;
+  overflow: hidden;
 }
 
 header ul a::after {
   content: "";
   position: absolute;
-  width: 0; /* Start with zero width */
+  width: 0;
   height: 2px;
   bottom: -2px;
-  left: 0; /* Start from the left edge */
+  left: 0;
   background-color: var(--primary-color);
-  transition: width 0.3s ease; /* Transition width property */
+  transition: width 0.3s ease;
 }
 
 header ul a:hover::after {
-  width: 100%; /* Expand to full width on hover */
+  width: 100%;
 }
 
 .theme-btn {
@@ -166,13 +166,13 @@ header ul a:hover::after {
 
 /* Hero Section */
 #hero {
-  min-height: 50vh; /* Reduced from 70vh */
+  min-height: 50vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding-top: 100px; /* Account for fixed header */
+  padding-top: 80px;
 }
 
 #hero h2 {
@@ -184,17 +184,17 @@ header ul a:hover::after {
 
 #hero p {
   max-width: 700px;
-  margin-bottom: 2rem; /* Reduced from 2rem */
+  margin-bottom: 2rem;
 }
 
 .hero-links {
-  display: flex; /* Use flexbox */
-  align-items: center; /* Vertically align items */
-  gap: 1rem; /* Add space between items */
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .hero-links a {
-  margin: 0; /* Remove default margin */
+  margin: 0;
 }
 
 .btn {
@@ -241,26 +241,24 @@ header ul a:hover::after {
   margin-left: 0;
   display: inline-flex;
   align-items: center;
-  padding-bottom: 4px; /* Space for underline */
-  /* border-bottom: none; */ /* No border needed */
-  position: relative; /* For pseudo-element */
-  overflow: hidden; /* Hide overflow */
-  /* transition: none; */ /* No transition needed on parent */
+  padding-bottom: 4px;
+  position: relative;
+  overflow: hidden;
 }
 
 .icon-link::after {
   content: "";
   position: absolute;
-  width: 0; /* Start with zero width */
+  width: 0;
   height: 2px;
-  bottom: 0; /* Position at the bottom */
-  left: 0; /* Start from the left edge */
-  background-color: var(--text-color); /* Use text color for underline */
-  transition: width 0.3s ease; /* Transition width */
+  bottom: 0;
+  left: 0;
+  background-color: var(--text-color);
+  transition: width 0.3s ease;
 }
 
 .icon-link:hover::after {
-  width: 100%; /* Expand to full width on hover */
+  width: 100%;
 }
 
 .icon-link svg {
@@ -273,58 +271,54 @@ header ul a:hover::after {
 /* Projects Section */
 
 .project-display-area {
-  /* New wrapper */
   display: flex;
-  align-items: center; /* Vertically center buttons and carousel */
-  gap: 15px; /* Space between buttons and carousel */
+  align-items: center;
+  gap: 15px;
 }
 
 #projects-carousel {
   background-color: var(--card-bg);
   border-radius: 8px;
   border: 1px solid var(--border-color);
-  padding: 25px; /* Slightly reduced padding */
+  padding: 25px;
   box-shadow: var(--shadow);
   overflow: hidden;
-  flex-grow: 1; /* Allow carousel to take up remaining space */
-  position: relative; /* Ensure it's a positioning context */
+  flex-grow: 1;
+  position: relative;
 }
 
 #project-counter {
   position: absolute;
   top: 10px;
   right: 15px;
-  background-color: rgba(0, 0, 0, 0.2); /* Subtle background */
+  background-color: rgba(0, 0, 0, 0.2);
   color: var(--secondary-color);
   padding: 3px 8px;
   border-radius: 4px;
   font-size: 0.8rem;
   font-weight: 600;
-  z-index: 2; /* Above content but below potential modals */
+  z-index: 2;
 }
 
 .carousel-content {
-  /* Content will be populated by JS */
-  opacity: 1; /* Start fully visible */
-  transition: opacity 0.3s ease-in-out; /* Add transition for fade */
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .carousel-content.fading-out {
-  opacity: 0; /* Target state for fade-out */
+  opacity: 0;
 }
 
 .carousel-content .project-top {
   display: flex;
-  /* flex-direction: column; */
-  flex-wrap: wrap; /* Assuming it wrapped originally */
+  flex-wrap: wrap;
   gap: 30px;
   margin-bottom: 20px;
 }
 
 .carousel-content .project-image {
-  /* flex: 1 1 100%; */ /* Remove 100% basis */
-  flex: 1 1 50%; /* Restore approximate original flex value */
-  min-width: 300px; /* Restore original min-width if desired */
+  flex: 1 1 50%;
+  min-width: 300px;
 }
 
 .carousel-content .project-image img {
@@ -336,9 +330,8 @@ header ul a:hover::after {
 }
 
 .carousel-content .project-stack {
-  /* flex: 1 1 100%; */ /* Remove 100% basis */
-  flex: 1 1 40%; /* Restore approximate original flex value */
-  min-width: 250px; /* Restore original min-width if desired */
+  flex: 1 1 40%;
+  min-width: 250px;
 }
 
 .carousel-content .project-stack h4 {
@@ -346,36 +339,31 @@ header ul a:hover::after {
   color: var(--secondary-color);
 }
 
-/* New Tech Stack Bubble Styles */
 .tech-stack-bubbles {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px; /* Spacing between bubbles */
+  gap: 10px;
 }
 
 .tech-bubble {
-  background-color: rgba(
-    var(--primary-rgb, 144, 160, 217),
-    0.1
-  ); /* Use primary color with low opacity */
+  background-color: rgba(var(--primary-rgb, 144, 160, 217), 0.1);
   color: var(--primary-color);
   padding: 8px 15px;
-  border-radius: 20px; /* Rounded bubble shape */
-  font-size: 0.85rem; /* Slightly smaller font */
+  border-radius: 20px;
+  font-size: 0.85rem;
   border: 1px solid rgba(var(--primary-rgb, 144, 160, 217), 0.3);
-  display: inline-flex; /* Align items nicely */
+  display: inline-flex;
   align-items: center;
 }
 
 body.light-theme .tech-bubble {
-  /* Slightly different colors for light theme if needed */
   background-color: rgba(var(--primary-rgb-light, 58, 70, 124), 0.08);
   border-color: rgba(var(--primary-rgb-light, 58, 70, 124), 0.2);
 }
 
 .tech-bubble strong {
-  color: var(--secondary-color); /* Different color for category */
-  margin-right: 6px; /* Space after category */
+  color: var(--secondary-color);
+  margin-right: 6px;
   font-weight: 600;
 }
 
@@ -396,7 +384,7 @@ body.light-theme .tech-bubble {
   color: var(--link-color);
   display: inline-flex;
   align-items: center;
-  gap: 8px; /* Space between icon and text (if any) */
+  gap: 8px;
   font-weight: bold;
   padding-bottom: 4px;
   position: relative;
@@ -425,24 +413,22 @@ body.light-theme .tech-bubble {
 }
 
 /* Carousel Navigation */
-/* Removed old .carousel-nav absolute positioning styles */
 
 .carousel-nav-btn {
-  /* New styles for external buttons */
-  background-color: var(--card-bg); /* Match card background */
+  background-color: var(--card-bg);
   border: 1px solid var(--border-color);
   color: var(--text-color);
   border-radius: 50%;
-  width: 45px; /* Adjusted size */
+  width: 45px;
   height: 45px;
-  font-size: 1.8rem; /* Adjusted size */
-  line-height: 1; /* Better vertical alignment */
+  font-size: 1.8rem;
+  line-height: 1;
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
   transition: background-color 0.3s ease, color 0.3s ease;
-  flex-shrink: 0; /* Prevent buttons from shrinking */
+  flex-shrink: 0;
 }
 
 .carousel-nav-btn:hover {
@@ -451,10 +437,7 @@ body.light-theme .tech-bubble {
   border-color: var(--primary-color);
 }
 
-/* Removed old .project-card styles */
-
 .tech-stack span {
-  /* Keep general tech stack styles if used elsewhere */
   display: inline-block;
   background-color: var(--tag-bg);
   color: var(--tag-text);
@@ -468,44 +451,43 @@ body.light-theme .tech-bubble {
 /* Work Experience Section */
 
 .experience-container {
-  position: relative; /* Needed for absolute positioning of the timeline */
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 30px;
-  padding-left: 40px; /* Space for timeline line and dots */
+  padding-left: 40px;
 }
 
 .experience-container::before {
   content: "";
   position: absolute;
-  left: 15px; /* Position within the padding */
-  top: 10px; /* Add some top padding */
-  bottom: 10px; /* Add some bottom padding */
+  left: 15px;
+  top: 10px;
+  bottom: 10px;
   width: 3px;
-  background-color: var(--border-color); /* Timeline color */
+  background-color: var(--border-color);
   border-radius: 2px;
 }
 
 .job-entry {
-  position: relative; /* Needed for absolute positioning of the dot */
+  position: relative;
   background-color: var(--card-bg);
   padding: 20px;
   border-radius: 8px;
   border: 1px solid var(--border-color);
-  /* margin-left: 20px; /* Offset card from the line - Handled by container padding now */
 }
 
 .job-entry::before {
   content: "";
   position: absolute;
-  left: -28.5px; /* Position the dot over the line: -(container padding-left - timeline left - dot width / 2) = -(40 - 15 - 7/2) = -28.5px approx */
-  top: 1.1rem; /* Align roughly with the top of the h3 (adjust as needed) */
-  width: 11px; /* Dot size */
-  height: 11px; /* Dot size */
-  background-color: var(--primary-color); /* Dot color */
-  border: 2px solid var(--bg-color); /* Create cutout effect against line */
+  left: -28.5px;
+  top: 1.1rem;
+  width: 11px;
+  height: 11px;
+  background-color: var(--primary-color);
+  border: 2px solid var(--bg-color);
   border-radius: 50%;
-  z-index: 1; /* Ensure dot is above the line */
+  z-index: 1;
 }
 
 .job-entry h3 {
@@ -534,41 +516,32 @@ body.light-theme .tech-bubble {
 }
 
 /* Skills Section */
+
 .skills-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 15px; /* Keep the gap between skill bubbles */
+  gap: 15px;
   justify-content: center;
 }
 
 .skill-tag {
-  /* background-color: var(--tag-bg); */ /* Remove old background */
-  /* color: var(--tag-text); */ /* Remove old text color */
-  /* border-radius: 5px; */ /* Remove old border-radius */
-  /* font-size: 0.9rem; */ /* Remove old font-size */
-
-  /* Apply styles similar to .tech-bubble */
-  background-color: rgba(
-    var(--primary-rgb, 144, 160, 217),
-    0.1
-  ); /* Use primary color with low opacity */
+  background-color: rgba(var(--primary-rgb, 144, 160, 217), 0.1);
   color: var(--primary-color);
-  padding: 8px 15px; /* Padding remains the same */
-  border-radius: 20px; /* Rounded bubble shape */
-  font-size: 0.85rem; /* Match tech bubble font size */
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-size: 0.85rem;
   border: 1px solid rgba(var(--primary-rgb, 144, 160, 217), 0.3);
-  display: inline-flex; /* Ensure proper alignment if needed */
+  display: inline-flex;
   align-items: center;
 }
 
 body.light-theme .skill-tag {
-  /* Apply light theme adjustments similar to .tech-bubble */
   background-color: rgba(var(--primary-rgb-light, 58, 70, 124), 0.08);
   border-color: rgba(var(--primary-rgb-light, 58, 70, 124), 0.2);
-  /* color: var(--primary-color); */ /* Color should already be correct via variable */
 }
 
 /* Contact Section */
+
 #contact {
   text-align: center;
 }
@@ -585,8 +558,6 @@ footer {
   border-top: 1px solid var(--border-color);
   font-size: 0.9rem;
 }
-
-/* Add responsive styles later */
 
 .logo-link {
   text-decoration: none;
@@ -617,27 +588,27 @@ footer {
   position: fixed;
   bottom: 30px;
   right: 30px;
-  color: var(--text-color); /* Use theme text color */
-  padding: 10px; /* Add some padding around the icon */
+  color: var(--text-color);
+  padding: 10px;
   cursor: pointer;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease, color 0.3s ease; /* Add color transition */
+  transition: opacity 0.3s ease, visibility 0.3s ease, color 0.3s ease;
   z-index: 1000;
 }
 
 .scroll-to-top.visible {
-  opacity: 0.6; /* Slightly transparent normally */
+  opacity: 0.6;
   visibility: visible;
 }
 
 .scroll-to-top:hover {
-  opacity: 1; /* Fully opaque on hover */
+  opacity: 1;
 }
 
 .scroll-to-top svg {
-  width: 32px; /* Slightly larger icon */
+  width: 32px;
   height: 32px;
   fill: currentColor;
-  display: block; /* Good practice for SVGs */
+  display: block;
 }
