@@ -1,7 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
   console.log("DOM fully loaded and parsed");
-  setupThemeToggle(); // Setup toggle before fetching data
-  fetchData();
+  setupThemeToggle(); // Setup toggle now that button exists in HTML
+  renderCopyrightYear(); // Render copyright year immediately
+  setupScrollToTopButton(); // Add setup for scroll button
+  fetchData(); // Fetch dynamic data
 });
 
 async function fetchData() {
@@ -12,72 +14,44 @@ async function fetchData() {
     }
     const data = await response.json();
     console.log("Data fetched successfully:", data);
-    // Call rendering functions
-    renderHeader(data.personalInfo); // Assuming some info might go in header
-    renderHero(data.personalInfo);
+    // Call rendering functions for DYNAMIC content
+    setLogoLink(data.personalInfo);
+    renderHeroLinks(data.personalInfo);
     renderProjects(data.projects);
     renderWorkExperience(data.workExperience);
     renderSkills(data.skills);
-    renderContact(data.personalInfo);
-    renderFooter(); // Assuming footer is static or uses general info
+    renderContactButton(data.personalInfo);
   } catch (error) {
     console.error("Could not fetch portfolio data:", error);
-    // Optionally display an error message to the user on the page
   }
 }
 
 // --- Rendering Functions ---
 
-function renderHeader(info) {
-  const header = document.querySelector("header");
-  if (!header) return;
-  // Example: Simple header with name/initials and nav
-  header.innerHTML = `
-    <nav>
-      <div class="logo">MS.</div> 
-      <ul>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#work-experience">Experience</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><button id="theme-toggle" class="theme-btn" aria-label="Toggle theme">☀️</button></li> 
-      </ul>
-    </nav>
-  `;
-  // Add listener after button is rendered
-  const toggleButton = document.getElementById("theme-toggle");
-  if (toggleButton) {
-    toggleButton.addEventListener("click", toggleTheme);
+function setLogoLink(info) {
+  const logoLink = document.getElementById("logo-link");
+  if (logoLink && info.gitlab) {
+    logoLink.href = info.gitlab;
   }
 }
 
-function renderHero(info) {
-  const heroSection = document.getElementById("hero");
-  if (!heroSection) return;
-  // Wrap name in span.highlight
-  const nameParts = info.name.split(" "); // Simple split assuming first/last name
-  const firstName = nameParts.slice(0, -1).join(" ");
-  const lastName = nameParts.slice(-1)[0];
-  const highlightedName = `${firstName} <span class="highlight">${lastName}</span>`; // Highlight last name, adjust if needed
-  // Or simply highlight the whole name: const highlightedName = `<span class="highlight">${info.name}</span>`; Let's highlight the whole name for simplicity
+function renderHeroLinks(info) {
+  const heroLinksContainer = document.querySelector("#hero .hero-links");
+  if (!heroLinksContainer) return;
+  const gitlabLabel = "GitLab"; // Or "Code Repository"?
 
-  heroSection.innerHTML = `
-    <h1>Hi, I am <span class="highlight">${info.name}</span>.</h1>
-    <h2>${info.title}.</h2>
-    <p>${info.bio}</p>
-    <div class="hero-links">
-      <a href="${info.resumeUrl}" target="_blank" rel="noopener noreferrer" class="btn">Resume</a> 
-      <a href="${info.github}" target="_blank" rel="noopener noreferrer" class="icon-link" aria-label="GitHub"> 
-        <svg viewBox="0 0 24 24" aria-hidden="true" width="24" height="24" fill="currentColor">
-          <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"></path>
-        </svg>
-      </a> 
-      <a href="${info.linkedin}" target="_blank" rel="noopener noreferrer" class="icon-link" aria-label="LinkedIn">
-         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="24" height="24" fill="currentColor" aria-hidden="true">
-           <path d="M41,4H9C6.24,4,4,6.24,4,9v32c0,2.76,2.24,5,5,5h32c2.76,0,5-2.24,5-5V9C46,6.24,43.76,4,41,4z M17,20v19h-6V20H17z M11,14.47c0-1.4,1.2-2.47,3-2.47s2.93,1.07,3,2.47c0,1.4-1.12,2.53-3,2.53C12.2,17,11,15.87,11,14.47z M39,39h-6c0,0,0-9.26,0-10 c0-2-1-4-3.5-4.04h-0.08C27,24.96,26,27.02,26,29c0,0.91,0,10,0,10h-6V20h6v2.56c0,0,1.93-2.56,5.81-2.56 c3.97,0,7.19,2.73,7.19,8.26V39z"></path>
-         </svg>
-      </a> 
-    </div>
+  heroLinksContainer.innerHTML = `
+    <a href="${info.resumeUrl}" target="_blank" rel="noopener noreferrer" class="btn">Resume</a> 
+    <a href="${info.gitlab}" target="_blank" rel="noopener noreferrer" class="icon-link" aria-label="${gitlabLabel}"> 
+      <svg class="icon-svg" aria-hidden="true">
+        <use xlink:href="assets/sprite.svg#icon-code"></use>
+      </svg>
+    </a> 
+    <a href="${info.linkedin}" target="_blank" rel="noopener noreferrer" class="icon-link" aria-label="LinkedIn">
+      <svg class="icon-svg" aria-hidden="true">
+        <use xlink:href="assets/sprite.svg#icon-linkedin"></use>
+      </svg>
+    </a> 
   `;
 }
 
@@ -153,30 +127,27 @@ function renderSkills(skills) {
   });
 }
 
-function renderContact(info) {
-  const contactSection = document.getElementById("contact");
-  if (!contactSection) return;
-  // Simple contact section - replace H2 if needed
-  contactSection.innerHTML = `
-    <h2>Contact</h2>
-    <p>Feel free to reach out!</p>
+function renderContactButton(info) {
+  const container = document.querySelector(
+    "#contact .contact-button-container"
+  );
+  if (!container) return;
+  container.innerHTML = `
     <a href="mailto:${info.email}" class="btn">Email Me</a>
   `;
 }
 
-function renderFooter() {
-  const footer = document.querySelector("footer");
-  if (!footer) return;
-  footer.innerHTML = `
-    <p>&copy; ${new Date().getFullYear()} Mladen Savic. All rights reserved.</p>
-    <!-- Add scroll-to-top later -->
-  `;
+function renderCopyrightYear() {
+  const yearSpan = document.getElementById("copyright-year");
+  if (yearSpan) {
+    yearSpan.textContent = new Date().getFullYear();
+  }
 }
 
 // --- Theme Toggle Logic ---
 
-const sunIcon = `<svg viewBox="0 0 24 24" aria-hidden="true" width="24" height="24" fill="currentColor"><path d="M6.05 4.14l-.39-.39c-.39-.39-1.02-.38-1.4 0l-.01.01c-.39.39-.39 1.02 0 1.4l.39.39c.39.39 1.01.39 1.4 0l.01-.01c.39-.38.39-1.02 0-1.4zM3.01 10.5H1.99c-.55 0-.99.44-.99.99v.01c0 .55.44.99.99.99H3c.56.01 1-.43 1-.98v-.01c0-.56-.44-1-.99-1zm9-9.95H12c-.56 0-1 .44-1 .99v.96c0 .55.44.99.99.99H12c.56.01 1-.43 1-.98v-.97c0-.55-.44-.99-.99-.99zm7.74 3.21c-.39-.39-1.02-.39-1.41-.01l-.39.39c-.39.39-.39 1.02 0 1.4l.01.01c.39.39 1.02.39 1.4 0l.39-.39c.39-.39.39-1.01 0-1.4zm-1.81 15.1l.39.39c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41l-.39-.39c-.39-.39-1.02-.38-1.4 0-.4.4-.4 1.02-.01 1.41zM20 11.49v.01c0 .55.44.99.99.99H22c.55 0 .99-.44.99-.99v-.01c0-.55-.44-.99-.99-.99h-1.01c-.55 0-.99.44-.99.99zM12 5.5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-.01 16.95H12c.55 0 .99-.44.99-.99v-.96c0-.55-.44-.99-.99-.99h-.01c-.55 0-.99.44-.99.99v.96c0 .55.44.99.99.99zm-7.74-3.21c.39.39 1.02.39 1.41 0l.39-.39c.39-.39.38-1.02 0-1.4l-.01-.01a.9959.9959 0 00-1.41 0l-.39.39c-.38.4-.38 1.02.01 1.41z"></path></svg>`;
-const moonIcon = `<svg viewBox="0 0 24 24" aria-hidden="true" width="24" height="24" fill="currentColor"><path d="M10 2c-1.82 0-3.53.5-5 1.35C7.99 5.08 10 8.3 10 12s-2.01 6.92-5 8.65C6.47 21.5 8.18 22 10 22c5.52 0 10-4.48 10-10S15.52 2 10 2z"></path></svg>`;
+const sunIconHTML = `<svg class="icon-svg" aria-hidden="true"><use xlink:href="assets/sprite.svg#icon-sun"></use></svg>`;
+const moonIconHTML = `<svg class="icon-svg" aria-hidden="true"><use xlink:href="assets/sprite.svg#icon-moon"></use></svg>`;
 
 function setupThemeToggle() {
   const themeToggleButton = document.getElementById("theme-toggle");
@@ -184,24 +155,15 @@ function setupThemeToggle() {
 
   if (currentTheme === "light") {
     document.body.classList.add("light-theme");
-    if (themeToggleButton) themeToggleButton.innerHTML = moonIcon;
+    if (themeToggleButton) themeToggleButton.innerHTML = moonIconHTML;
   } else {
-    if (themeToggleButton) themeToggleButton.innerHTML = sunIcon;
+    // Default dark theme
+    if (themeToggleButton) themeToggleButton.innerHTML = sunIconHTML;
   }
 
+  // Add listener now that button is guaranteed to be in HTML
   if (themeToggleButton) {
     themeToggleButton.addEventListener("click", toggleTheme);
-  } else {
-    setTimeout(() => {
-      const btnDelayed = document.getElementById("theme-toggle");
-      if (btnDelayed) {
-        btnDelayed.addEventListener("click", toggleTheme);
-        // Also set initial icon state if button wasn't ready initially
-        btnDelayed.innerHTML = document.body.classList.contains("light-theme")
-          ? moonIcon
-          : sunIcon;
-      }
-    }, 100);
   }
 }
 
@@ -211,10 +173,35 @@ function toggleTheme() {
   let newTheme;
   if (document.body.classList.contains("light-theme")) {
     newTheme = "light";
-    if (themeToggleButton) themeToggleButton.innerHTML = moonIcon;
+    if (themeToggleButton) themeToggleButton.innerHTML = moonIconHTML;
   } else {
     newTheme = "dark";
-    if (themeToggleButton) themeToggleButton.innerHTML = sunIcon;
+    if (themeToggleButton) themeToggleButton.innerHTML = sunIconHTML;
   }
   localStorage.setItem("theme", newTheme);
+}
+
+// --- Scroll-to-Top Logic ---
+
+function setupScrollToTopButton() {
+  const scrollToTopBtn = document.getElementById("scroll-to-top");
+  const scrollThreshold = 300; // Pixels to scroll before showing button
+
+  if (!scrollToTopBtn) return;
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > scrollThreshold) {
+      scrollToTopBtn.classList.add("visible");
+    } else {
+      scrollToTopBtn.classList.remove("visible");
+    }
+  });
+
+  scrollToTopBtn.addEventListener("click", (event) => {
+    event.preventDefault(); // Prevent default anchor behavior
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", // Smooth scroll
+    });
+  });
 }

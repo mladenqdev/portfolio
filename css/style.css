@@ -45,9 +45,9 @@ body {
 }
 
 section {
-  padding: 80px 40px;
-  max-width: 1200px;
-  margin: 0 auto; /* Center sections */
+  padding: 50px 10px;
+  max-width: 1044px;
+  margin: 0 auto;
 }
 
 h1,
@@ -90,16 +90,21 @@ a {
 
 /* Header */
 header nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 40px;
   background-color: var(--header-bg);
-  position: fixed; /* Sticky header */
+  position: fixed;
   width: 100%;
   top: 0;
   z-index: 1000;
   backdrop-filter: blur(5px);
+}
+
+.nav-container {
+  max-width: 1044px;
+  margin: 0 auto;
+  padding: 1rem 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 header .logo {
@@ -144,6 +149,13 @@ header ul a:hover::after {
   cursor: pointer;
   padding: 0;
   line-height: 1;
+}
+
+.theme-btn svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+  display: block;
 }
 
 /* Hero Section */
@@ -249,6 +261,7 @@ header ul a:hover::after {
   width: 24px;
   height: 24px;
   fill: currentColor;
+  display: block;
 }
 
 /* Projects Section */
@@ -389,3 +402,57 @@ footer {
 }
 
 /* Add responsive styles later */
+
+.logo-link {
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  padding-bottom: 4px;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.logo-link::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--primary-color);
+  transition: width 0.3s ease;
+}
+
+.logo-link:hover::after {
+  width: 100%;
+}
+
+/* Scroll-to-top Button */
+.scroll-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  color: var(--text-color); /* Use theme text color */
+  padding: 10px; /* Add some padding around the icon */
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, color 0.3s ease; /* Add color transition */
+  z-index: 1000;
+}
+
+.scroll-to-top.visible {
+  opacity: 0.6; /* Slightly transparent normally */
+  visibility: visible;
+}
+
+.scroll-to-top:hover {
+  opacity: 1; /* Fully opaque on hover */
+}
+
+.scroll-to-top svg {
+  width: 32px; /* Slightly larger icon */
+  height: 32px;
+  fill: currentColor;
+  display: block; /* Good practice for SVGs */
+}

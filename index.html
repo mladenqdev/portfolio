@@ -11,44 +11,103 @@
   </head>
   <body>
     <header>
-      <!-- Navigation will go here -->
+      <nav>
+        <div class="nav-container">
+          <a
+            href="#"
+            id="logo-link"
+            class="logo-link"
+            aria-label="Homepage / GitLab Profile"
+          >
+            <div class="logo">MS.</div>
+          </a>
+          <ul>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#work-experience">Experience</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li>
+              <button
+                id="theme-toggle"
+                class="theme-btn"
+                aria-label="Toggle theme"
+              >
+                <!-- Icon loaded by JS -->
+              </button>
+            </li>
+          </ul>
+        </div>
+      </nav>
     </header>
 
     <main>
       <section id="hero">
-        <!-- Hero content will be loaded here -->
+        <h1>Hi, I am <span class="highlight">Mladen Savic</span>.</h1>
+        <h2>Frontend Developer.</h2>
+        <p>
+          Cinephile, book lover, chess enthusiast, and always chasing for those
+          green arrows in Fantasy Premier League! Continue scrolling, if you
+          want to find out how a couple of mini projects, that were created for
+          the sole purpose of self-promotion, have totally changed the world!
+        </p>
+        <div class="hero-links">
+          <!-- Dynamic links (Resume, GitHub, LinkedIn) loaded here by JS -->
+        </div>
       </section>
 
       <section id="projects">
         <h2>Projects</h2>
         <div class="projects-container">
-          <!-- Project cards will be loaded here -->
+          <!-- Project cards loaded here by JS -->
         </div>
       </section>
 
       <section id="work-experience">
         <h2>Work Experience</h2>
         <div class="experience-container">
-          <!-- Work experience entries will be loaded here -->
+          <!-- Work experience entries loaded here by JS -->
         </div>
       </section>
 
       <section id="skills">
         <h2>Skills</h2>
         <div class="skills-container">
-          <!-- Skill tags will be loaded here -->
+          <!-- Skill tags loaded here by JS -->
         </div>
       </section>
 
       <section id="contact">
         <h2>Contact</h2>
-        <!-- Contact info/form will go here -->
+        <p>Feel free to reach out!</p>
+        <div class="contact-button-container">
+          <!-- Email Me button loaded here by JS -->
+        </div>
       </section>
     </main>
 
     <footer>
-      <!-- Footer content will go here -->
+      <p>
+        &copy; <span id="copyright-year"></span> Mladen Savic. All rights
+        reserved.
+      </p>
     </footer>
+
+    <a
+      href="#"
+      id="scroll-to-top"
+      class="scroll-to-top"
+      aria-label="Scroll to top"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        width="24"
+        height="24"
+        fill="currentColor"
+      >
+        <path d="M12 4l-8 8h6v8h4v-8h6l-8-8z" />
+      </svg>
+    </a>
 
     <script src="js/main.js"></script>
   </body>

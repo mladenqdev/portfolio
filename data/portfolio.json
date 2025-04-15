@@ -1,11 +1,8 @@
 {
   "personalInfo": {
-    "name": "Mladen Savic",
-    "title": "Frontend Developer",
-    "bio": "Cinephile, book lover, chess enthusiast, and always chasing for those green arrows in Fantasy Premier League! Continue scrolling, if you want to find out how a couple of mini projects, that were created for the sole purpose of self-promotion, have totally changed the world!",
-    "email": "mladenqdev@gmail.com",
+    "email": "mladjosq@gmail.com",
     "linkedin": "https://linkedin.com/in/savicmladen",
-    "github": "https://github.com/mladenqdev",
+    "gitlab": "https://gitlab.com/mladenqdev",
     "resumeUrl": "/assets/cv/MladenSavicCV.pdf"
   },
   "projects": [
