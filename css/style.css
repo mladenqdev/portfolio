@@ -166,6 +166,36 @@ header ul a:hover::after {
   display: block;
 }
 
+.logo-link {
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  padding-bottom: 4px;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.logo-link::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--primary-color);
+  transition: width 0.3s ease;
+}
+
+.logo-link:hover::after {
+  width: 100%;
+}
+
+:is(a, button):focus-visible {
+  outline: 3px solid var(--primary-color);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
 /* Hero Section */
 #hero {
   min-height: 50vh;
@@ -595,30 +625,6 @@ footer {
   font-size: 0.9rem;
 }
 
-.logo-link {
-  text-decoration: none;
-  color: inherit;
-  position: relative;
-  padding-bottom: 4px;
-  overflow: hidden;
-  display: inline-block;
-}
-
-.logo-link::after {
-  content: "";
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: 0;
-  left: 0;
-  background-color: var(--primary-color);
-  transition: width 0.3s ease;
-}
-
-.logo-link:hover::after {
-  width: 100%;
-}
-
 /* Scroll-to-top Button */
 .scroll-to-top {
   position: fixed;
@@ -809,40 +815,25 @@ footer {
     font-size: 1.5rem;
   }
   #prev-project {
-    left: -27px;
+    left: -18px;
   }
   #next-project {
-    right: -27px;
+    right: -18px;
   }
-}
 
-/* Logo Link */
-.logo-link {
-  text-decoration: none;
-  color: inherit;
-  position: relative;
-  padding-bottom: 4px;
-  overflow: hidden;
-  display: inline-block;
-}
-
-.logo-link::after {
-  content: "";
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: 0;
-  left: 0;
-  background-color: var(--primary-color);
-  transition: width 0.3s ease;
-}
-
-.logo-link:hover::after {
-  width: 100%;
-}
-
-:is(a, button):focus-visible {
-  outline: 3px solid var(--primary-color);
-  outline-offset: 2px;
-  border-radius: 3px;
+  .job-entry {
+    padding: 12px;
+  }
+  .job-entry h3 {
+    font-size: 1.1rem;
+  }
+  .job-entry h4 {
+    font-size: 0.95rem;
+  }
+  .job-entry .dates {
+    font-size: 0.8rem;
+  }
+  .job-entry ul {
+    font-size: 0.92rem;
+  }
 }
