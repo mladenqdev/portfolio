@@ -674,7 +674,7 @@ footer {
     left: 0;
     right: 0;
     background-color: var(--bg-color);
-    padding: 1rem;
+    padding: 1rem 1rem 0 1rem;
     border-top: 1px solid var(--border-color);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     z-index: 999;
@@ -706,7 +706,60 @@ footer {
   }
 
   .scroll-to-top {
-    right: 5px;
+    right: 0;
+  }
+
+  .project-display-area {
+    gap: 10px;
+  }
+
+  #projects-carousel {
+    padding: 15px;
+  }
+
+  .carousel-content .project-top {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .carousel-content .project-image,
+  .carousel-content .project-stack {
+    flex-basis: auto;
+    min-width: 0;
+    flex: 1;
+  }
+
+  .carousel-content .project-description {
+    margin-bottom: 15px;
+  }
+
+  .experience-container {
+    padding-left: 8px;
+  }
+
+  .experience-container::before {
+    left: -5px;
+  }
+
+  .job-entry::before {
+    left: -17px;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+  }
+
+  h2 {
+    font-size: 1.7rem;
+    margin-bottom: 30px;
+  }
+
+  #hero h2 {
+    font-size: 1.7rem;
+  }
+  #hero p {
+    font-size: 0.95rem;
+    max-width: 90%;
   }
 }
 
