@@ -41,6 +41,19 @@
       "liveUrl": "https://chess-buddyz.web.app/",
       "codeUrl": "https://gitlab.com/mladenqdev/chess-buddy",
       "imageUrl": "/assets/images/chess-buddy.png"
+    },
+    {
+      "title": "Portfolio Website",
+      "description": "Personal portfolio website entirely built using fundamental web technologies: semantic HTML, CSS Custom Properties for theming, Flexbox/Grid for layout, media queries for responsiveness, and vanilla JavaScript for dynamic content rendering (from JSON), event handling (carousel, menu, theme), and scroll-triggered animations (IntersectionObserver).",
+      "techStack": [
+        { "category": "Markup", "name": "HTML5" },
+        { "category": "Styling", "name": "CSS3 (Flexbox, Custom Properties)" },
+        { "category": "Language", "name": "JavaScript (ES6+)" },
+        { "category": "Data Format", "name": "JSON" }
+      ],
+      "liveUrl": "#",
+      "codeUrl": "https://gitlab.com/mladenqdev/portfolio",
+      "imageUrl": "/assets/images/portfolio.png"
     }
   ],
   "workExperience": [
@@ -51,7 +64,7 @@
       "startDate": "January 2021",
       "endDate": "January 2022",
       "description": [
-        "Key project: Developed an in-house web app for tracking inventory using QR code scanning.",
+        "Key project: Co-developed an in-house web app for tracking inventory using QR code scanning.",
         "Creating pixel-perfect pages and components for various web platforms",
         "Developing web pages with performance and accessibility in mind",
         "Participating in biweekly team meetings and various internal knowledge-sharing events",

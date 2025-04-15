@@ -54,6 +54,9 @@ async function fetchData() {
     renderWorkExperience(data.workExperience);
     renderSkills(data.skills);
     renderContactButton(data.personalInfo);
+
+    // **** Call setupScrollAnimations AFTER rendering ****
+    setupScrollAnimations();
   } catch (error) {
     console.error("Could not fetch portfolio data:", error);
     const contentDiv = document.querySelector(
@@ -123,7 +126,7 @@ function renderCurrentProject() {
         <div class="project-image">
           ${
             project.imageUrl
-              ? `<img src="${project.imageUrl}" alt="${project.title} screenshot">`
+              ? `<img src="${project.imageUrl}" alt="Screenshot of ${project.title} project interface">`
               : '<div class="no-image">No Image Available</div>'
           } 
         </div>
@@ -141,11 +144,15 @@ function renderCurrentProject() {
         }" target="_blank" rel="noopener noreferrer" aria-label="View Code">
           <svg class="icon-svg" aria-hidden="true"><use href="/assets/sprite.svg#icon-code"></use></svg>
         </a>
-        <a href="${
-          project.liveUrl
-        }" target="_blank" rel="noopener noreferrer" aria-label="Live Demo">
+        ${
+          project.liveUrl && project.liveUrl !== "#"
+            ? `
+        <a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" aria-label="Live Demo">
           ${externalLinkSvg}
         </a>
+        `
+            : ""
+        }
       </div>
     </article>
   `;
@@ -496,5 +503,41 @@ function setupMobileMenu() {
     mobileMenuContainer.classList.toggle("open");
     menuToggleBtn.setAttribute("aria-expanded", !isExpanded);
     menuToggleBtn.innerHTML = !isExpanded ? closeIconSVG : hamburgerIconSVG;
+  });
+}
+
+// --- Scroll Animation Logic ---
+
+function setupScrollAnimations() {
+  const sectionsToAnimate = document.querySelectorAll(
+    "main > section:not(#hero)"
+  );
+
+  if (!sectionsToAnimate.length) {
+    return;
+  }
+
+  const observerOptions = {
+    root: null,
+    rootMargin: "-50px 0px -50px 0px",
+    threshold: 0.1,
+  };
+
+  const observerCallback = (entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("section-visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  };
+
+  const intersectionObserver = new IntersectionObserver(
+    observerCallback,
+    observerOptions
+  );
+
+  sectionsToAnimate.forEach((section) => {
+    intersectionObserver.observe(section);
   });
 }

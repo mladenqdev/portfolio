@@ -307,7 +307,7 @@ header ul a:hover::after {
   align-items: center;
   gap: 15px;
   position: relative;
-  width: 85%;
+  width: 90%;
   margin: 0 auto;
 }
 
@@ -354,7 +354,7 @@ header ul a:hover::after {
 
 .carousel-content .project-image {
   flex: 1 1 50%;
-  min-width: 300px;
+  max-width: 400px;
 }
 
 .carousel-content .project-image img {
@@ -836,4 +836,15 @@ footer {
   .job-entry ul {
     font-size: 0.92rem;
   }
+}
+
+/* Styles for scroll animations */
+section:not(#hero) {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out;
+}
+
+section.section-visible {
+  opacity: 1 !important;
 }
