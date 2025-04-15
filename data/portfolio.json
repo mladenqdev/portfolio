@@ -6,7 +6,7 @@
     "email": "mladenqdev@gmail.com",
     "linkedin": "https://linkedin.com/in/savicmladen",
     "github": "https://github.com/mladenqdev",
-    "resumeUrl": "/assets/MladenSavicCV.pdf"
+    "resumeUrl": "/assets/cv/MladenSavicCV.pdf"
   },
   "projects": [
     {
@@ -25,7 +25,7 @@
       ],
       "liveUrl": "https://movie-vaultz.vercel.app/",
       "codeUrl": "https://gitlab.com/mladenqdev/movie-vault",
-      "imageUrl": "/assets/movie-vault.png"
+      "imageUrl": "/assets/images/movie-vault.png"
     },
     {
       "title": "Chess Buddy",
@@ -51,31 +51,50 @@
       ],
       "liveUrl": "https://chess-buddyz.web.app/",
       "codeUrl": "https://gitlab.com/mladenqdev/chess-buddy",
-      "imageUrl": "/assets/chess-buddy.png"
+      "imageUrl": "/assets/images/chess-buddy.png"
     }
   ],
   "workExperience": [
     {
-      "jobTitle": "Frontend Developer",
-      "company": "TradeCore",
-      "location": "Belgrade, Serbia",
-      "startDate": "Jul 2024",
+      "jobTitle": "FRONT-END REACT DEVELOPER",
+      "company": "WONGDOODY",
+      "location": "",
+      "startDate": "2022",
       "endDate": "Present",
       "description": [
-        "Migrated legacy Vue2 apps to Next.js, significantly improving page load speed and code maintainability.",
-        "Implemented a monorepo architecture via TurboRepo to optimize project management and reduce build times.",
-        "Configured and automated CI/CD pipelines with GitLab, ensuring faster and more reliable deployments."
+        "Key project: B2B Shoppable solution in the \"Where To Buy\" world used by major global brands such as 3M, Procter & Gamble, Intel, Lego, Pierre Fabre, Samsung and many more.",
+        "Hands-on coding with a focus on front-end technologies",
+        "Maintaining and enhancing multiple applications",
+        "Performing peer code reviews on a daily basis",
+        "Contributing to product decisions with technical input",
+        "Technologies used: React, Angular, Material-UI (MUI), Styled-Components, Redux, React Query, Context API, Cypress, Jest, React Testing Library, AWS, GitHub Actions"
       ]
     },
     {
-      "jobTitle": "IT Consultant / Professional Software Engineer",
-      "company": "PRODYNA",
-      "location": "Belgrade, Serbia",
-      "startDate": "Jun 2022",
-      "endDate": "Jul 2024",
+      "jobTitle": "FRONT-END REACT DEVELOPER",
+      "company": "THINKING ENGINEERS",
+      "location": "",
+      "startDate": "2022",
+      "endDate": "2022",
       "description": [
-        "IoT Camera Management: Developed a solution for real-time camera control and data processing using Azure IoT Hub with React, enabling seamless device communication and efficient data handling.",
-        "Add more points based on your actual experience."
+        "Key project: \"Social Thinking\" eCommerce Platform, which helps people of different ages and mental abilities find their way through the complex social world, relying on unique strategies developed by a team of devoted and diligent experts.",
+        "Translating designs and wireframes into high quality code",
+        "Building and maintaining codebase documentation",
+        "Stakeholder communication",
+        "Technologies used: React, Gatsby.js, Sass, Redux, Context API, React Testing Library, InVision"
+      ]
+    },
+    {
+      "jobTitle": "FRONT-END DEVELOPER",
+      "company": "VEGA IT",
+      "location": "",
+      "startDate": "2021",
+      "endDate": "2021",
+      "description": [
+        "Creating pixel-perfect pages and components for various web platforms",
+        "Developing web pages with performance and accessibility in mind",
+        "Participating in biweekly team meetings and various internal knowledge-sharing events",
+        "Technologies used: jQuery, Handlebars.js, CSS, Sass"
       ]
     }
   ],

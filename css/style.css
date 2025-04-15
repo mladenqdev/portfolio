@@ -5,30 +5,387 @@
   box-sizing: border-box;
 }
 
+/* Theme Variables */
+:root {
+  /* Dark Theme (Default) */
+  --bg-color: #23283e; /* --clr-bg */
+  --card-bg: #2a2f4c; /* --clr-bg-alt */
+  --text-color: #bdbddd; /* --clr-fg */
+  --primary-color: #90a0d9; /* --clr-primary */
+  --secondary-color: #cdcdff; /* --clr-fg-alt */
+  --link-color: var(--primary-color); /* Use primary for links now */
+  --border-color: #3a3f5c; /* Slightly darker card bg */
+  --tag-bg: var(--card-bg); /* Use card bg for tags */
+  --tag-text: var(--text-color); /* Use main text for tags */
+  --header-bg: rgba(35, 40, 62, 0.85); /* Semi-transparent --bg-color */
+  --shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+    rgba(0, 0, 0, 0.06) 0px 0px 0px 1px; /* --shadow */
+}
+
+body.light-theme {
+  /* Light Theme */
+  --bg-color: #fcfcfc; /* --clr-bg */
+  --card-bg: #ffffff; /* --clr-bg-alt */
+  --text-color: #555555; /* --clr-fg */
+  --primary-color: #3a467c; /* --clr-primary */
+  --secondary-color: #444444; /* --clr-fg-alt */
+  --link-color: var(--primary-color);
+  --border-color: #eeeeee; /* Lighter border */
+  --tag-bg: var(--card-bg);
+  --tag-text: var(--text-color);
+  --header-bg: rgba(252, 252, 252, 0.85); /* Semi-transparent --bg-color */
+  --shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; /* --shadow */
+}
+
 body {
-  font-family: sans-serif; /* Placeholder font */
-  /* Add base font size, line height, background color etc. later */
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
 }
 
 section {
-  padding: 60px 20px; /* Example padding */
+  padding: 80px 40px;
+  max-width: 1200px;
+  margin: 0 auto; /* Center sections */
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin-bottom: 1rem;
+  color: var(--secondary-color); /* Default heading color */
+}
+
+h1 {
+  font-size: 3rem;
+  text-align: center;
 }
 
 h2 {
   text-align: center;
-  margin-bottom: 40px; /* Example spacing */
+  margin-bottom: 50px;
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
-/* Add container styles, layout styles (Flexbox/Grid), theme variables etc. */
+h1,
+h2,
+h3,
+h4 {
+  margin-bottom: 1rem;
+  color: var(--secondary-color);
+}
 
-.projects-container,
-.experience-container,
+.highlight {
+  color: var(--primary-color); /* Apply primary color to highlighted elements */
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none; /* Remove default underline globally */
+}
+
+/* Header */
+header nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 40px;
+  background-color: var(--header-bg);
+  position: fixed; /* Sticky header */
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+}
+
+header .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+header ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+header ul a {
+  font-weight: bold;
+  position: relative;
+  padding-bottom: 4px;
+  text-decoration: none; /* Ensure no default underline */
+  overflow: hidden; /* Hide overflow for clean effect */
+}
+
+header ul a::after {
+  content: "";
+  position: absolute;
+  width: 0; /* Start with zero width */
+  height: 2px;
+  bottom: -2px;
+  left: 0; /* Start from the left edge */
+  background-color: var(--primary-color);
+  transition: width 0.3s ease; /* Transition width property */
+}
+
+header ul a:hover::after {
+  width: 100%; /* Expand to full width on hover */
+}
+
+.theme-btn {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+/* Hero Section */
+#hero {
+  min-height: 50vh; /* Reduced from 70vh */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-top: 100px; /* Account for fixed header */
+}
+
+#hero h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+#hero p {
+  max-width: 600px;
+  margin-bottom: 1rem; /* Reduced from 2rem */
+}
+
+.hero-links {
+  display: flex; /* Use flexbox */
+  align-items: center; /* Vertically align items */
+  gap: 1rem; /* Add space between items */
+}
+
+.hero-links a {
+  margin: 0; /* Remove default margin */
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.5rem;
+  background-color: transparent;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: color 0.3s ease, border-color 0.3s ease;
+  text-decoration: none;
+  font-weight: bold;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: var(--primary-color);
+  transition: left 0.3s ease;
+  z-index: -1;
+}
+
+.btn:hover {
+  color: var(--card-bg);
+  text-decoration: none;
+  border-color: var(--primary-color);
+}
+
+.btn:hover::before {
+  left: 0;
+}
+
+.icon-link {
+  color: var(--text-color);
+  text-decoration: none;
+  margin-left: 0;
+  display: inline-flex;
+  align-items: center;
+  padding-bottom: 4px; /* Space for underline */
+  /* border-bottom: none; */ /* No border needed */
+  position: relative; /* For pseudo-element */
+  overflow: hidden; /* Hide overflow */
+  /* transition: none; */ /* No transition needed on parent */
+}
+
+.icon-link::after {
+  content: "";
+  position: absolute;
+  width: 0; /* Start with zero width */
+  height: 2px;
+  bottom: 0; /* Position at the bottom */
+  left: 0; /* Start from the left edge */
+  background-color: var(--text-color); /* Use text color for underline */
+  transition: width 0.3s ease; /* Transition width */
+}
+
+.icon-link:hover::after {
+  width: 100%; /* Expand to full width on hover */
+}
+
+.icon-link svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
+/* Projects Section */
+#projects {
+  padding-top: 40px; /* Reduced from section default 80px */
+}
+
+.projects-container {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(350px, 1fr)
+  ); /* Responsive grid */
+  gap: 30px;
+}
+
+.project-card {
+  background-color: var(--card-bg);
+  padding: 25px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow);
+}
+
+.project-card img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 15px;
+  border-radius: 4px;
+  object-fit: cover; /* Ensure images cover the area nicely */
+  max-height: 200px; /* Limit image height */
+}
+
+.project-card h3 {
+  color: var(--primary-color);
+  margin-bottom: 10px;
+}
+
+.project-card p {
+  margin-bottom: 15px;
+  font-size: 0.95rem;
+}
+
+.tech-stack span {
+  display: inline-block;
+  background-color: var(--tag-bg);
+  color: var(--tag-text);
+  padding: 3px 8px;
+  border-radius: 4px;
+  margin-right: 5px;
+  margin-bottom: 10px;
+  font-size: 0.8rem;
+}
+
+.project-links a {
+  margin-right: 15px;
+  font-weight: bold;
+  color: var(--link-color);
+}
+
+/* Work Experience Section */
+.experience-container {
+  /* Basic list layout for now - we can add timeline visuals later */
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.job-entry {
+  background-color: var(--card-bg);
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.job-entry h3 {
+  color: var(--primary-color);
+}
+
+.job-entry h4 {
+  color: var(--secondary-color);
+  font-style: italic;
+  margin-bottom: 5px;
+}
+
+.job-entry .dates {
+  font-size: 0.9rem;
+  color: var(--primary-color);
+  margin-bottom: 10px;
+}
+
+.job-entry ul {
+  list-style-position: inside;
+  padding-left: 5px;
+}
+
+.job-entry li {
+  margin-bottom: 5px;
+}
+
+/* Skills Section */
 .skills-container {
-  /* Styles for the containers that will hold dynamic content */
-  display: flex; /* Example - adjust as needed */
+  display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 15px;
   justify-content: center;
 }
 
-/* Styles for individual items (project cards, experience entries, skill tags) will go here */
+.skill-tag {
+  background-color: var(--tag-bg);
+  color: var(--tag-text);
+  padding: 8px 15px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+}
+
+/* Contact Section */
+#contact {
+  text-align: center;
+}
+
+#contact p {
+  margin-bottom: 20px;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+  border-top: 1px solid var(--border-color);
+  font-size: 0.9rem;
+}
+
+/* Add responsive styles later */
