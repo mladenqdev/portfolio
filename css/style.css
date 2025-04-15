@@ -112,6 +112,7 @@ header nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 }
 
 header .logo {
@@ -155,6 +156,7 @@ header ul a:hover::after {
   cursor: pointer;
   padding: 0;
   line-height: 1;
+  order: -1;
 }
 
 .theme-btn svg {
@@ -611,4 +613,124 @@ footer {
   height: 32px;
   fill: currentColor;
   display: block;
+}
+
+/* === Responsive Styles === */
+
+/* Mobile Header */
+.mobile-nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 1.8rem;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 10px;
+}
+
+.mobile-nav-toggle svg {
+  width: 28px;
+  height: 28px;
+  fill: currentColor;
+  display: block;
+}
+
+.mobile-nav {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  header ul {
+    display: none;
+  }
+
+  .mobile-nav-toggle {
+    display: block;
+    margin-left: 0;
+  }
+
+  .nav-container {
+    justify-content: space-between;
+  }
+
+  .header-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .theme-btn {
+    position: static;
+    transform: none;
+    margin: 0;
+    order: -1;
+  }
+
+  .mobile-nav.open {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--bg-color);
+    padding: 1rem;
+    border-top: 1px solid var(--border-color);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+  }
+
+  body.light-theme .mobile-nav.open {
+    background-color: var(--bg-color);
+  }
+
+  .mobile-nav ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .mobile-nav ul a {
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding: 0.5rem 0;
+    overflow: visible;
+  }
+
+  .mobile-nav ul a::after {
+    display: none;
+  }
+
+  .scroll-to-top {
+    right: 5px;
+  }
+}
+
+/* Logo Link */
+.logo-link {
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  padding-bottom: 4px;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.logo-link::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--primary-color);
+  transition: width 0.3s ease;
+}
+
+.logo-link:hover::after {
+  width: 100%;
 }

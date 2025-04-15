@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupThemeToggle();
   renderCopyrightYear();
   setupScrollToTopButton();
+  setupMobileMenu();
   fetchData();
 });
 
@@ -335,5 +336,59 @@ function setupScrollToTopButton() {
       top: 0,
       behavior: "smooth",
     });
+  });
+}
+
+// Define SVGs for icons
+const hamburgerIconSVG = `<svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path></svg>`;
+const closeIconSVG = `<svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"></path></svg>`;
+
+// Add this new function
+function setupMobileMenu() {
+  const navContainer = document.querySelector(".nav-container");
+  const headerNav = document.querySelector("header nav");
+  const desktopNavUl = document.querySelector("header ul");
+  const themeBtn = document.getElementById("theme-toggle"); // Get existing theme button
+
+  if (!navContainer || !headerNav || !desktopNavUl || !themeBtn) {
+    // Added themeBtn check
+    console.error("Header elements for mobile menu setup not found.");
+    return;
+  }
+
+  // 1. Create Header Controls Wrapper
+  const headerControls = document.createElement("div");
+  headerControls.className = "header-controls";
+
+  // 2. Create Hamburger Button
+  const menuToggleBtn = document.createElement("button");
+  menuToggleBtn.id = "menu-toggle";
+  menuToggleBtn.className = "mobile-nav-toggle";
+  menuToggleBtn.setAttribute("aria-label", "Toggle navigation");
+  menuToggleBtn.setAttribute("aria-expanded", "false");
+  menuToggleBtn.innerHTML = hamburgerIconSVG; // Initial icon
+
+  // 3. Append Theme Button and Hamburger to Wrapper
+  headerControls.appendChild(themeBtn); // Move existing theme button
+  headerControls.appendChild(menuToggleBtn);
+
+  // 4. Append Wrapper to Nav Container
+  navContainer.appendChild(headerControls);
+
+  // 5. Create Mobile Menu Container (as before)
+  const mobileMenuContainer = document.createElement("div");
+  mobileMenuContainer.id = "mobile-menu";
+  mobileMenuContainer.className = "mobile-nav";
+  const mobileNavUl = desktopNavUl.cloneNode(true);
+  mobileMenuContainer.appendChild(mobileNavUl);
+  headerNav.appendChild(mobileMenuContainer);
+
+  // 6. Add Toggle Logic (with icon change)
+  menuToggleBtn.addEventListener("click", () => {
+    const isExpanded = menuToggleBtn.getAttribute("aria-expanded") === "true";
+    mobileMenuContainer.classList.toggle("open");
+    menuToggleBtn.setAttribute("aria-expanded", !isExpanded);
+    // Change icon based on new state
+    menuToggleBtn.innerHTML = !isExpanded ? closeIconSVG : hamburgerIconSVG;
   });
 }
