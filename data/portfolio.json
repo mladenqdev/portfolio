@@ -17,7 +17,7 @@
         { "category": "ORM", "name": "Prisma" },
         { "category": "Styling", "name": "Tailwind CSS" },
         { "category": "Email Service", "name": "Resend" },
-        { "category": "AI", "name": "Hugging Face (Mistral-7B)" },
+        { "category": "AI", "name": "Hugging Face (zephyr-7b-beta)" },
         { "category": "Deployment", "name": "Vercel" }
       ],
       "liveUrl": "https://movie-vaultz.vercel.app/",
