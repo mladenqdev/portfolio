@@ -43,6 +43,22 @@
       "imageUrl": "/assets/images/chess-buddy.png"
     },
     {
+      "title": "Chess Notation Helper",
+      "description": "Chess Notation Helper is a Chrome extension designed to accelerate the learning process for algebraic chess notation. It automatically detects moves made during online games on Lichess.org and Chess.com and briefly highlights the 'landing'' squares on the board. This real-time visual feedback helps users connect the abstract notation to the physical board, improving recognition and understanding without disrupting gameplay.",
+      "techStack": [
+        { "category": "Platform", "name": "Chrome Extension (Manifest V3)" },
+        { "category": "Language", "name": "JavaScript" },
+        { "category": "Markup", "name": "HTML" },
+        { "category": "Styling", "name": "CSS" },
+        { "category": "API", "name": "Chrome Extensions API" },
+        { "category": "Technique", "name": "DOM Scraping" },
+        { "category": "Technique", "name": "MutationObserver" },
+        { "category": "Worker", "name": "Service Worker" }
+      ],
+      "codeUrl": "https://gitlab.com/mladenqdev/chess-notation-helper",
+      "imageUrl": "/assets/images/chess-notation-helper.png"
+    },
+    {
       "title": "YT Trackback",
       "description": "YT Trackback is a Chrome extension that helps you recover lost videos from your YouTube playlists. Scan any playlist for unavailable (deleted, private, or region-blocked) videos, and attempt to recover their original titles using the Internet Archive. Features include a simple popup UI, real-time progress updates, and privacy-first local processing. Built for YouTube curators who want to preserve the integrity of their playlists.",
       "techStack": [
