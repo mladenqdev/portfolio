@@ -55,6 +55,7 @@
         { "category": "Technique", "name": "MutationObserver" },
         { "category": "Worker", "name": "Service Worker" }
       ],
+      "liveUrl": "https://chromewebstore.google.com/detail/chess-notation-helper/jikbapnldlagjeghbghipabcimjmmekg",
       "codeUrl": "https://gitlab.com/mladenqdev/chess-notation-helper",
       "imageUrl": "/assets/images/chess-notation-helper.png"
     },
