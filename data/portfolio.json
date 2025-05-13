@@ -7,10 +7,29 @@
   },
   "projects": [
     {
+      "title": "Serbia Rentals",
+      "description": "Serbia Rentals is a web application designed to connect users with rental properties across Serbia. It allows users to browse available listings, view property details, save their favorite properties, and contact property owners. Property owners can list their properties, upload images, and manage their listings.",
+      "techStack": [
+        { "category": "Framework", "name": "Next.js (App Router)" },
+        { "category": "Language", "name": "JavaScript" },
+        { "category": "Auth", "name": "NextAuth.js (Google Provider)" },
+        { "category": "Database", "name": "MongoDB" },
+        { "category": "ORM", "name": "Mongoose" },
+        { "category": "Styling", "name": "Tailwind CSS" },
+        {
+          "category": "Mapping",
+          "name": "Mapbox GL JS - Google Geocoding API"
+        }
+      ],
+      "liveUrl": "https://serbia-rentals.vercel.app/",
+      "codeUrl": "https://gitlab.com/mladenqdev/serbia-rentals",
+      "imageUrl": "/assets/images/serbia-rentals.png"
+    },
+    {
       "title": "MovieVault",
       "description": "MovieVault is a feature-rich web application for movie enthusiasts. It allows users to discover, rate, review and discuss movies and TV shows. The platform combines personal curation with community interaction, featuring detailed media information, user reviews, watchlists, real-time discussions, and an AI-powered movie assistant for personalized recommendations and insights.",
       "techStack": [
-        { "category": "Framework", "name": "Next.js 15 (App Router)" },
+        { "category": "Framework", "name": "Next.js (App Router)" },
         { "category": "Language", "name": "TypeScript" },
         { "category": "Auth", "name": "NextAuth.js" },
         { "category": "Database", "name": "PostgreSQL" },
